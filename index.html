@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>unquote</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" type="text/css" href="layout/css/styles.css" media="screen, print"/>
+    <script src="polymer/components/platform/platform.js"></script>
+    <link rel="import" href="polymer/components/font-roboto/roboto.html">
+    <link rel="import" href="polymer/components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="polymer/components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="polymer/components/paper-tabs/paper-tabs.html">  
+    <link rel="import" href="edit.html">
+  </head>
+
+  <body unresolved touch-action="auto">
+  <core-header-panel>
+    <core-toolbar>
+      <paper-tabs selected="all" valueattr="name" self-end>
+        <paper-tab name="edit">EDIT</paper-tab>
+        <paper-tab name="import">IMPORT</paper-tab>
+        <paper-tab name="generate">GENERATE</paper-tab>
+      </paper-tabs>
+    </core-toolbar>
+
+    <!-- main page content will go here -->
+    <div class="container" layout vertical center>
+      <sidecar-table show="all"></sidecar-table>
+    </div>
+
+  </core-header-panel>
+
+  <script>
+    var tabs = document.querySelector('paper-tabs');   
+  </script>
+</body>
+
+</html>

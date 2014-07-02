@@ -1,0 +1,45 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-ajax/core-ajax.html">
+
+<polymer-element name="sidecar-rows" attributes="rows">
+  <template>
+    <style>
+    :host {
+      display: none;
+    }
+    </style>
+    <core-ajax id="ajax" auto url="../api/sidecar.json" on-core-response="{{rowsLoaded}}" handleAs="json">
+    </core-ajax>
+  </template>
+  <script>
+  Polymer('sidecar-rows', {
+    created: function() {
+      this.rows = [];
+    },
+    rowsLoaded: function() {
+      // Make a copy of the loaded data
+      this.rows= this.$.ajax.response.slice(0);
+    },
+    addNewRow: function() {
+      this.rows.push ({
+        "article_name": "",
+        "source_format" : 0,
+        "custom_toc_icon" : "",
+        "vertical_file_location" : "",
+        "vertical_file_layout_name" : "",
+        "horizontal_file_location" : "",
+        "horizontal_file_layout_name" : "",
+        "article_title" : "",
+        "author" : "",
+        "kicker" : "",
+        "description" : "",
+        "tags" : "",
+        "ads" : true,
+        "smooth_scrolling" : 6,
+        "flattened_stack" : "",
+        "article_access" : 0
+      });
+    }
+  });
+  </script>
+</polymer-element>

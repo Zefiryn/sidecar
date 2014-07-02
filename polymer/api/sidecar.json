@@ -1,0 +1,20 @@
+[
+  {
+    "article_name": "Test article name",
+    "source_format" : 0,
+    "custom_toc_icon" : "",
+    "vertical_file_location" : "",
+    "vertical_file_layout_name" : "",
+    "horizontal_file_location" : "",
+    "horizontal_file_layout_name" : "",
+    "article_title" : "",
+    "author" : "",
+    "kicker" : "",
+    "description" : "",
+    "tags" : "",
+    "ads" : true,
+    "smooth_scrolling" : 6,
+    "flattened_stack" : "",
+    "article_access" : 0
+  }
+]

@@ -1,0 +1,94 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-size: 12px;
+  background-color: #e5e5e5;
+  font-family: 'RobotoDraft', sans-serif;
+  
+  core-header-panel {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
+
+    core-toolbar {
+      background: #03a9f4;
+      color: white;
+
+      paper-tabs {
+        width: 100%;
+        .user-select(none);
+      }
+    }
+  }
+ 
+  .container {
+    width: 80%;
+    margin: 50px auto;
+
+    paper-input {
+      width: 40px;
+
+      &[multiline] {
+        width: 120px;
+      }
+    }
+
+    .sidecar-table {
+
+      border-collapse: collapse;
+
+      th {
+        text-align: center;
+        
+        &.multicols-header {
+
+          .cols {
+            width: 150px;
+            .col {display: inline-block;}
+          }
+        }
+
+        td {
+          background: none;
+        }
+      }
+
+      td {
+        text-align: center;
+        background: #fff;
+        &.left {
+          text-align: left;
+        }
+      }
+    }
+
+    .add-new-row {     
+      position: relative;
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      color: #f00;
+      overflow: hidden;
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+      background-color: #fff;
+      margin: 25px 0px;
+
+      core-icon {
+        margin: 16px;
+      }
+    }
+  }
+
+
+  @media (min-width: 481px) {
+    paper-tabs {
+      width: 200px;
+    }
+    .container {
+      width: 400px;
+    }
+  }
+}

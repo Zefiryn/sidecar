@@ -1,0 +1,159 @@
+<link rel="import" href="polymer/components/polymer/polymer.html">
+<link rel="import" href="polymer/components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="polymer/components/paper-input/paper-input.html">
+<link rel="import" href="polymer/components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="polymer/components/paper-ripple/paper-ripple.html">
+<link rel="import" href="polymer/components/core-icons/core-icons.html">
+<link rel="import" href="polymer/service/sidecar.html">
+<link rel="import" href="polymer/elements/header.html">
+<link rel="import" href="polymer/elements/row.html">
+
+<polymer-element name="sidecar-table" attributes="show">
+  <template>
+    <sidecar-rows id="service" rows="{{rows}}"></sidecar-rows>
+
+    <div layout vertical center>
+      
+      <table class="sidecar-table">
+        <thead>
+          <sidecar-header>
+            <th>Article Name</th>
+            <th>Source Format</th>
+            <th>Custom TOC Icon</th>
+            <th colspan="2" class="multicols-header">
+              <p><span>Vertical File</span></p>
+              <table class="cols">
+                <tr>
+                  <td>Location</td>
+                  <td>Layout Name</td>
+                </tr>
+              </table>
+            </th>
+            <th colspan="2" class="multicols-header">
+              <p><span>Horizontal File</span></p>
+              <table class="cols">
+                <tr>
+                  <td>Location</td>
+                  <td>Layout Name</td>
+                </tr>
+              </table>
+            </th>
+            <th>Article/Title</th>
+            <th>Author</th>
+            <th>Kicker</th>
+            <th>Description</th>
+            <th>Tags</th>
+            <th>Ads</th>
+            <th>Smooth Scrolling</th>
+            <th>Flattened Stack</th>
+            <th>Article Access</th>
+          </sidecar-header>
+        </thead>
+        <tbody>
+          <template id="sidecar-rows" repeat="{{row in rows}}">
+            <tr>
+              <td>
+                <paper-input multiline inputValue="{{row.article_name}}"></paper-input>
+              </td>
+
+              <td class="left">
+                <paper-radio-group selected="{{row.source_format}}">
+                  <paper-radio-button label="InDesign"></paper-radio-button><br>
+                  <paper-radio-button label="HTML"></paper-radio-button>
+                </paper-radio-group>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.custom_toc_icon}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.vertical_file_location}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.vertical_file_layout_name}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.horizontal_file_location}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.horizontal_file_layout_name}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.article_title}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.author}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input multiline inputValue="{{row.kicker}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input multiline inputValue="{{row.description}}"></paper-input>
+              </td>
+
+              <td>
+                <paper-input inputValue="{{row.tags}}"></paper-input>
+              </td>
+
+              <td>
+                <template if="{{ row.ads == true }}">
+                  <paper-checkbox checked></paper-checkbox>
+                </template>
+                <template if="{{ row.ads == false }}"> 
+                  <paper-checkbox></paper-checkbox>
+                </template>           
+              </td>
+
+              <td class="left">
+                <paper-radio-group selected="{{row.smooth_scrolling}}">
+                  <paper-radio-button label="Always"></paper-radio-button><br />
+                  <paper-radio-button label="Portrait"></paper-radio-button><br />
+                  <paper-radio-button label="Landscape"></paper-radio-button><br />
+                  <paper-radio-button label="Never"></paper-radio-button>
+                </paper-radio-group>
+
+              </td>
+
+              <td>
+                <template if="{{ row.flattened_stack == true }}">
+                  <paper-checkbox checked></paper-checkbox>
+                </template>
+                <template if="{{ row.flattened_stack == false }}"> 
+                  <paper-checkbox></paper-checkbox>
+                </template>
+              </td>
+
+              <td class="left">
+                <paper-radio-group selected="{{row.article_access}}">
+                  <paper-radio-button label="Free"></paper-radio-button><br />
+                  <paper-radio-button label="Metered"></paper-radio-button><br />
+                  <paper-radio-button label="Protected"></paper-radio-button>
+                </paper-radio-group>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+      <div class="add-new-row">
+        <core-icon icon="add"></core-icon>
+        <paper-ripple class="circle recenteringTouch" fit on-click="{{addNewRow}}"></paper-ripple>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer('sidecar-table', {
+      addNewRow: function() {
+        this.$.service.addNewRow();
+      }
+    });
+  </script>
+
+</polymer-element>

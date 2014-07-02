@@ -1,0 +1,99 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-size: 12px;
+  background-color: #e5e5e5;
+  font-family: 'RobotoDraft', sans-serif;
+}
+html core-header-panel,
+body core-header-panel {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+html core-header-panel core-toolbar,
+body core-header-panel core-toolbar {
+  background: #03a9f4;
+  color: white;
+}
+html core-header-panel core-toolbar paper-tabs,
+body core-header-panel core-toolbar paper-tabs {
+  width: 100%;
+  -o-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+html .container,
+body .container {
+  width: 80%;
+  margin: 50px auto;
+}
+html .container paper-input,
+body .container paper-input {
+  width: 40px;
+}
+html .container paper-input[multiline],
+body .container paper-input[multiline] {
+  width: 120px;
+}
+html .container .sidecar-table,
+body .container .sidecar-table {
+  border-collapse: collapse;
+}
+html .container .sidecar-table th,
+body .container .sidecar-table th {
+  text-align: center;
+}
+html .container .sidecar-table th.multicols-header .cols,
+body .container .sidecar-table th.multicols-header .cols {
+  width: 150px;
+}
+html .container .sidecar-table th.multicols-header .cols .col,
+body .container .sidecar-table th.multicols-header .cols .col {
+  display: inline-block;
+}
+html .container .sidecar-table th td,
+body .container .sidecar-table th td {
+  background: none;
+}
+html .container .sidecar-table td,
+body .container .sidecar-table td {
+  text-align: center;
+  background: #fff;
+}
+html .container .sidecar-table td.left,
+body .container .sidecar-table td.left {
+  text-align: left;
+}
+html .container .add-new-row,
+body .container .add-new-row {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #f00;
+  overflow: hidden;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background-color: #fff;
+  margin: 25px 0px;
+}
+html .container .add-new-row core-icon,
+body .container .add-new-row core-icon {
+  margin: 16px;
+}
+@media (min-width: 481px) {
+  html paper-tabs,
+  body paper-tabs {
+    width: 200px;
+  }
+  html .container,
+  body .container {
+    width: 400px;
+  }
+}
