@@ -116,8 +116,13 @@
         <button data-bind="click: addNewRow">Add new row</button>
         <button data-bind="click: generateSidecar">Generate</button>
       </div>
+      
+      <div class="output">
+        <textarea data-bind="value: generatedXML()"></textarea>
+      </div>
     </div>
     
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type='text/javascript' src='assets/js/knockout.js'></script>
     <script type='text/javascript' src='assets/js/table.js'></script>
   </body>

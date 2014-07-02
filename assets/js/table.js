@@ -37,9 +37,13 @@ function RowsViewModel() {
       new SidecarRow(self.fileRows[0])
     ]);
     
+    self.generatedXML = ko.observable("");
+    
     // Add new row to the table
     self.addNewRow = function() {
-      self.rowsCollection.push(new SidecarRow(self.fileRows[0]));
+      //create new instance of this model to get default fileRow values
+      var newViewModel = new RowsViewModel();
+      self.rowsCollection.push(new SidecarRow(newViewModel.fileRows[0]));
     };
     
     self.removeRow = function(row) {
@@ -48,9 +52,16 @@ function RowsViewModel() {
     
     // Generate xml file
     self.generateSidecar = function() {
-      var data = ko.toJSON(self.rowsCollection);
-      console.log(data);
-    }
+      var rowsToSend = {items: []};
+      ko.utils.arrayForEach(self.rowsCollection(), function(item, idx) {
+        rowsToSend['items'][idx] = item.row();
+      });
+      var object = self;
+      $.get('/backend/generate.php', rowsToSend, function(response){
+        console.log(response);
+        object.generatedXML(response);
+      });      
+    };
 }
 
 var viewModel = new RowsViewModel();
