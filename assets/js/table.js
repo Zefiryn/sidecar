@@ -57,8 +57,7 @@ function RowsViewModel() {
         rowsToSend['items'][idx] = item.row();
       });
       var object = self;
-      $.get('/backend/generate.php', rowsToSend, function(response){
-        console.log(response);
+      $.get('backend/generate.php', rowsToSend, function(response){
         object.generatedXML(response);
       });      
     };
