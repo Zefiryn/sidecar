@@ -1,129 +1,134 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sidecar.xml</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="screen, print"/>    
-  </head>
-  <body>
-    <div class="container">
-      <table class="sidecar-table">
-        <thead>
-          <th>Article Name</th>
-            <th>Source Format</th>
-            <th>Custom TOC Icon</th>
-            <th colspan="2" class="multicols-header">
-              <p><span>Vertical File</span></p>
-              <table class="cols">
-                <tr>
-                  <td>Location</td>
-                  <td>Layout Name</td>
-                </tr>
-              </table>
-            </th>
-            <th colspan="2" class="multicols-header">
-              <p><span>Horizontal File</span></p>
-              <table class="cols">
-                <tr>
-                  <td>Location</td>
-                  <td>Layout Name</td>
-                </tr>
-              </table>
-            </th>
-            <th>Article/Title</th>
-            <th>Author</th>
-            <th>Kicker</th>
-            <th>Description</th>
-            <th>Tags</th>
-            <th>Ads</th>
-            <th>Smooth Scrolling</th>
-            <th>Flattened Stack</th>
-            <th>Article Access</th>
-            <th>Actions</th>
-        </thead>
-        
-        <tbody data-bind="foreach: rowsCollection">
-          <tr>
-              <td>
-                <textarea  data-bind="value: row().article_name" ></textarea>
-              </td>
-              <td>
-                <select data-bind="options: $parent.sourceFormats, selectedOptions: row().source_format"></select>
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().custom_toc_icon" />
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().vertical_file_location" />
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().vertical_file_layout_name" />
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().horizontal_file_location" />
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().horizontal_file_layout_name" />
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().author" />
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().article_title" />
-              </td>
-              <td>
-                <textarea data-bind="value: row().kicker"></textarea>
-              </td>
-              <td>
-                <textarea data-bind="value: row().description"></textarea>
-              </td>
-              <td>
-                <input type="text" data-bind="value: row().tags" />
-              </td>
-              <td>
-                <input type="checkbox" data-bind="checked: row().ads" />
-              </td>
-              <td>
-                <input type="radio" id="smooth_scrolling_always" name="smooth_scrolling" value="always" data-bind="checked: row().smooth_scrolling" />
-                <label for="smooth_scrolling_always">Always</label><br />
-                <input type="radio" id="smooth_scrolling_portrait" name="smooth_scrolling" value="portrait" data-bind="checked: row().smooth_scrolling" />
-                <label for="smooth_scrolling_portrait">Portrait</label><br />
-                <input type="radio" id="smooth_scrolling_landscape" name="smooth_scrolling" value="landscape" data-bind="checked: row().smooth_scrolling" />
-                <label for="smooth_scrolling_landscape">Landscape</label><br />
-                <input type="radio" id="smooth_scrolling_never" name="smooth_scrolling" value="never" data-bind="checked: row().smooth_scrolling" />
-                <label for="smooth_scrolling_never">Never</label>
-              </td>
-              <td>
-                <input type="checkbox" data-bind="checked: row().flattened_stack" />
-              </td>
-              <td>
-                <input type="radio" id="article_access_free" name="article_access" value="free" data-bind="checked: row().article_access" />
-                <label for="article_access_free">Free</label><br />
-                <input type="radio" id="article_access_metered" name="article_access" value="metered" data-bind="checked: row().article_access" />
-                <label for="article_access_metered">Metered</label><br />
-                <input type="radio" id="article_access_protected" name="article_access" value="protected" data-bind="checked: row().article_access" />
-                <label for="article_access_protected">Protected</label>
-              </td>
-              <td>
-                <button data-bind="click: $parent.removeRow">Remove row</button>
-              </td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div class="button-set">
-        <button data-bind="click: addNewRow">Add new row</button>
-        <button data-bind="click: generateSidecar">Generate</button>
-      </div>
-      
-      <div class="output">
-        <textarea data-bind="value: generatedXML()"></textarea>
-      </div>
-    </div>
-    
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script type='text/javascript' src='assets/js/knockout.js'></script>
-    <script type='text/javascript' src='assets/js/table.js'></script>
-  </body>
+    <head>
+        <title>Sidecar.xml</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="screen, print"/>    
+    </head>
+    <body>
+        <div class="container">
+            <label for="sidecar_file">Import existing file: </label>
+            <input type="file" id="sidecar_file" name="sidecar_file" data-bind="event: {change: readXmlFile}" />
+            <br /><br />
+            <table class="sidecar-table">
+                <thead>
+                <th>Article Name</th>
+                <th>Source Format</th>
+                <th>Custom TOC Icon</th>
+                <th colspan="2" class="multicols-header">
+                <p><span>Vertical File</span></p>
+                <table class="cols">
+                    <tr>
+                        <td>Location</td>
+                        <td>Layout Name</td>
+                    </tr>
+                </table>
+                </th>
+                <th colspan="2" class="multicols-header">
+                <p><span>Horizontal File</span></p>
+                <table class="cols">
+                    <tr>
+                        <td>Location</td>
+                        <td>Layout Name</td>
+                    </tr>
+                </table>
+                </th>
+                <th>Article/Title</th>
+                <th>Author</th>
+                <th>Kicker</th>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>Ads</th>
+                <th>Smooth Scrolling</th>
+                <th>Flattened Stack</th>
+                <th>Article Access</th>
+                <th>Actions</th>
+                </thead>
+
+                <tbody data-bind="foreach: rowsCollection">
+                    <tr>
+                        <td>
+                            <textarea  data-bind="value: row().article_name" ></textarea>
+                        </td>
+                        <td>
+                            <select data-bind="options: $parent.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format"></select>
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().custom_toc_icon" />
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().vertical_file_location" />
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().vertical_file_layout_name" />
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().horizontal_file_location" />
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().horizontal_file_layout_name" />
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().author" />
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().article_title" />
+                        </td>
+                        <td>
+                            <textarea data-bind="value: row().kicker"></textarea>
+                        </td>
+                        <td>
+                            <textarea data-bind="value: row().description"></textarea>
+                        </td>
+                        <td>
+                            <input type="text" data-bind="value: row().tags" />
+                        </td>
+                        <td>
+                            <input type="checkbox" data-bind="checked: row().ads" />
+                        </td>
+                        <td>
+                            <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
+                            <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
+                            <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
+                            <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Never</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" data-bind="checked: row().flattened_stack" />
+                        </td>
+                        <td>
+                            <input type="radio" value="free" data-bind="checked: row().article_access, attr: {id: 'article_access_free' + $index(), name: 'article_access['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'article_access_free' + $index()}">Free</label><br />
+                            <input type="radio" value="metered" data-bind="checked: row().article_access, attr: {id: 'article_access_metered' + $index(), name: 'article_access['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'article_access_metered' + $index()}">Metered</label><br />
+                            <input type="radio" value="protected" data-bind="checked: row().article_access, attr: {id: 'article_access_protected' + $index(), name: 'article_access['+ $index() +']'}" />
+                            <label data-bind="attr: {for: 'article_access_protected' + $index()}">Protected</label>
+                        </td>
+                        <td>
+                            <button data-bind="click: $parent.removeRow">Remove row</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="button-set">        
+                <button data-bind="click: addNewRow">Add new row</button>
+                <button data-bind="click: generateSidecar">Generate</button>
+            </div>
+
+            <div class="output">
+                <textarea data-bind="value: generatedXML()"></textarea>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/xml2json.min.js"></script>
+        <script type="text/javascript" src="assets/js/xmlformatter.js"></script>
+        <script type='text/javascript' src='assets/js/knockout.js'></script>
+        <script type='text/javascript' src='assets/js/table.js'></script>
+    </body>
 </html>
