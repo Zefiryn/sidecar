@@ -94,6 +94,7 @@ function SidecarViewModel() {
         var jsonObj = x2js.xml_str2json(xmlstr);
         
         self.rowsCollection.removeAll();
+        self.generatedXML("");
         ko.utils.arrayForEach(jsonObj.sidecar.entry, function(item, idx) {
             var contentSource = item.contentSource;
             var sourceFile = {  v: contentSource.sourceFile_v !== undefined ? contentSource.sourceFile_v : {},
