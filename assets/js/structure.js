@@ -1,6 +1,5 @@
 //Class that fold sidecar file structure and manipulation
 function sidecarStructure() {
-    // Empty row with default data
     var self = this;
     
     self.sourceFormats = [
@@ -29,10 +28,35 @@ function sidecarStructure() {
         }
     ];    
     
+    self.generateXml = function(rowsCollection) {
+        var sidecarObj = {sidecar: {entry: []}};
+        var x2js = new X2JS({escapeMode: false});      
+        ko.utils.arrayForEach(rowsCollection, function(item, idx) {
+          var row = self.prepareJsonObject(item);
+          sidecarObj.sidecar.entry.push(row);
+        });
+
+        var sidecarXmlString = x2js.json2xml_str(sidecarObj);
+        return formatXml(sidecarXmlString);
+    };
+    
+    self.importFromXml = function(xmlstr) {
+        var x2js = new X2JS({escapeMode: false});
+        var jsonObj = x2js.xml_str2json(xmlstr);        
+        var collection = [];
+        
+        ko.utils.arrayForEach(jsonObj.sidecar.entry, function(item, idx) {
+            var rowData = self.importRowDataFromXml(item);
+            collection.push(new SidecarRow(rowData));
+        });
+        
+        return collection;
+    };
+    
     /**
      * Convert fields object to structure ready to be xmlized
      */
-    self.convert = function(item) {
+    self.prepareJsonObject = function(item) {
         var object = {
           contentSource: {
             articleName: item.row().article_name,
@@ -64,7 +88,7 @@ function sidecarStructure() {
     /**
      * Convert xml json object to flat fields object
      */
-    self.importFromXmlObject = function(item) {
+    self.importRowDataFromXml = function(item) {
         var contentSource = item.contentSource;
         var sourceFile = {  v: contentSource.sourceFile_v !== undefined ? contentSource.sourceFile_v : {},
                             h: contentSource.sourceFile_h !== undefined ? contentSource.sourceFile_h : {}};

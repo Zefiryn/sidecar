@@ -8,6 +8,8 @@ function SidecarRow(row) {
 function SidecarViewModel() {
     var self = this;
     self.structure = new sidecarStructure();
+    self.fileReader = new fileReader();
+    
     self.sourceFormats = ko.observableArray(self.structure.sourceFormats);
     
     self.rowsCollection = ko.observableArray([
@@ -28,45 +30,19 @@ function SidecarViewModel() {
     };
     
     // Generate xml file
-    self.generateSidecar = function() {
-      var sidecarObj = {sidecar: {entry: []}};
-      var x2js = new X2JS({escapeMode: false});      
-      ko.utils.arrayForEach(self.rowsCollection(), function(item, idx) {
-        var row = self.structure.convert(item);
-        sidecarObj.sidecar.entry.push(row);
-      });
-      
-      var sidecarXmlString = x2js.json2xml_str(sidecarObj);      
-      self.generatedXML(formatXml(sidecarXmlString));
+    self.generateSidecar = function() {      
+      self.generatedXML(self.structure.generateXml(self.rowsCollection()));
     };
     
     self.importSidecarData = function(xmlstr) {
-        var x2js = new X2JS({escapeMode: false});
-        var jsonObj = x2js.xml_str2json(xmlstr);        
-        
         self.rowsCollection.removeAll();
-        self.generatedXML("");        
-        ko.utils.arrayForEach(jsonObj.sidecar.entry, function(item, idx) {
-            var rowData = self.structure.importFromXmlObject(item);
-            self.rowsCollection.push(new SidecarRow(rowData));
-        });
+        self.generatedXML("");
+        self.rowsCollection(self.structure.importFromXml(xmlstr));        
     };
     
     //read xmlfile provided to file input field
     self.readXmlFile= function(obj, evt) {
-        var file = evt.target.files[0]; 
-        if (file.type.match('text.*')) {
-            var reader = new FileReader();
-            reader.onloadend = (function(f){
-                return function(e) {
-                    self.importSidecarData(e.target.result);
-                };
-            })(file);
-            reader.readAsText(file);
-        }
-        else {
-            alert('Incorrect file type');
-        }
+        self.fileReader.readXmlFile(obj, evt, self.importSidecarData);
     };
 }
 
