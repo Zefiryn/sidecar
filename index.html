@@ -1,129 +1,226 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sidecar.xml</title>
+        <title>sidecar.xml generator for Adobe DPS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="screen, print"/>    
+        <script type="text/javascript">
+            document.documentElement.className += ' js';
+            var __adobewebfontsappname__ = "muse";
+        </script>
+        <script type="text/javascript">
+            document.write('\x3Cscript src="' + (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//webfonts.creativecloud.com/open-sans:n3,n4,n6,n7:all.js" type="text/javascript">\x3C/script>');
+        </script>
     </head>
     <body>
-        <div class="container">
-            <label for="sidecar_file">Import existing file: </label>
-            <input type="file" id="sidecar_file" name="sidecar_file" data-bind="event: {change: readXmlFile}" />
-            <br /><br />
-            <table class="sidecar-table">
-                <thead>
-                <th>Article Name</th>
-                <th>Source Format</th>
-                <th>Custom TOC Icon</th>
-                <th colspan="2" class="multicols-header">
-                <p><span>Vertical File</span></p>
-                <table class="cols">
-                    <tr>
-                        <td>Location</td>
-                        <td>Layout Name</td>
-                    </tr>
-                </table>
-                </th>
-                <th colspan="2" class="multicols-header">
-                <p><span>Horizontal File</span></p>
-                <table class="cols">
-                    <tr>
-                        <td>Location</td>
-                        <td>Layout Name</td>
-                    </tr>
-                </table>
-                </th>
-                <th>Article/Title</th>
-                <th>Author</th>
-                <th>Kicker</th>
-                <th>Description</th>
-                <th>Tags</th>
-                <th>Ads</th>
-                <th>Smooth Scrolling</th>
-                <th>Flattened Stack</th>
-                <th>Article Access</th>
-                <th>Actions</th>
-                </thead>
+        <header>
+            <img src="assets/images/logo.png" />
+            <h1>sidecar.xml generator for Adobe DPS</h1>
+            <nav>
+                <ul class="nav nav-tabs" data-bind="foreach: sections">
+                    <li data-bind="css: { active: isSelected }">
+                        <a href="#" data-bind="click: $parent.selectedSection">
+                            <span data-bind="text: name"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="buttons">
+                    <li>
+                        <span>Import</span>
+                        <button class="round btn-import" data-bind="event: {click: showImportBox}"></button>
+                        <input type="file" id="sidecar_file" name="sidecar_file" data-bind="event: {change: readXmlFile}" class="hidden" />
+                    </li>
+                    <li>
+                        <span>Export</span>
+                        <button class="round btn-export"></button>
+                    </li>
+                    <li>
+                        <span>Help</span>
+                        <button class="round btn-help"></button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section class="container">               
+            <div class="tab-content">
+                <!-- METADATA -->
+                <div class="tab-pane active" data-bind="css: { active: sections()[0].isSelected() }">
+                    <table class="sidecar-table">
+                        <colgroup>
+                            <col />
+                            <col width="180px" />
+                            <col width="120px" />
+                            <col width="120px" />
+                            <col width="410px" />
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Icon</th>
+                                <th>Article title (60)</th>
+                                <th>Author (40)</th>
+                                <th>Kicker (40)</th>
+                                <th>Description (120)</th>
+                                <th>Tags (40)</th>
+                                <th>Article access</th>
+                                <th>Ad</th>
+                                <th>Hide</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: rowsCollection">
+                            <tr>
+                                <td colspan="10" class="transparent">
+                                    <span class="article_name" data-bind="text: row().article_name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="transparent">
+                                    <span class="icon icon-toc"></span>
+                                </td>
+                                <td class="width-60">
+                                    <textarea data-bind="value: row().article_title" placeholder="Article title"></textarea>
+                                </td>
+                                <td class="width-40">
+                                    <textarea data-bind="value: row().author" placeholder="Author"></textarea>
+                                </td>
+                                <td class="width-40">
+                                    <textarea data-bind="value: row().kicker" placeholder="Kicker"></textarea>
+                                </td>
+                                <td class="width-120">
+                                    <textarea data-bind="value: row().description" placeholder="Description"></textarea>
+                                </td>
+                                <td class="width-40">
+                                    <textarea data-bind="value: row().tags" placeholder="Tags"></textarea>
+                                </td>
+                                <td>
+                                    <input type="radio" value="free" data-bind="checked: row().article_access, attr: {id: 'article_access_free' + $index(), name: 'article_access['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'article_access_free' + $index()}">Free</label><br />
+                                    <input type="radio" value="metered" data-bind="checked: row().article_access, attr: {id: 'article_access_metered' + $index(), name: 'article_access['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'article_access_metered' + $index()}">Metered</label><br />
+                                    <input type="radio" value="protected" data-bind="checked: row().article_access, attr: {id: 'article_access_protected' + $index(), name: 'article_access['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'article_access_protected' + $index()}">Protected</label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" data-bind="checked: row().ads" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" data-bind="checked: row().hide" />
+                                </td>                                    
+                                <td>
+                                    <button data-bind="click: $parent.removeRow">Remove row</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="button-set">        
+                        <button data-bind="click: addNewRow">Add new row</button>
+                    </div>
+                </div>
 
-                <tbody data-bind="foreach: rowsCollection">
-                    <tr>
-                        <td>
-                            <textarea  data-bind="value: row().article_name" ></textarea>
-                        </td>
-                        <td>
-                            <select data-bind="options: $parent.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format"></select>
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().custom_toc_icon" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().vertical_file_location" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().vertical_file_layout_name" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().horizontal_file_location" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().horizontal_file_layout_name" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().author" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().article_title" />
-                        </td>
-                        <td>
-                            <textarea data-bind="value: row().kicker"></textarea>
-                        </td>
-                        <td>
-                            <textarea data-bind="value: row().description"></textarea>
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: row().tags" />
-                        </td>
-                        <td>
-                            <input type="checkbox" data-bind="checked: row().ads" />
-                        </td>
-                        <td>
-                            <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
-                            <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
-                            <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
-                            <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Never</label>
-                        </td>
-                        <td>
-                            <input type="checkbox" data-bind="checked: row().flattened_stack" />
-                        </td>
-                        <td>
-                            <input type="radio" value="free" data-bind="checked: row().article_access, attr: {id: 'article_access_free' + $index(), name: 'article_access['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'article_access_free' + $index()}">Free</label><br />
-                            <input type="radio" value="metered" data-bind="checked: row().article_access, attr: {id: 'article_access_metered' + $index(), name: 'article_access['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'article_access_metered' + $index()}">Metered</label><br />
-                            <input type="radio" value="protected" data-bind="checked: row().article_access, attr: {id: 'article_access_protected' + $index(), name: 'article_access['+ $index() +']'}" />
-                            <label data-bind="attr: {for: 'article_access_protected' + $index()}">Protected</label>
-                        </td>
-                        <td>
-                            <button data-bind="click: $parent.removeRow">Remove row</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <!-- CONTENT SOURCE -->
+                <div class="tab-pane" data-bind="css: { active: sections()[1].isSelected() }">
+                    <table class="sidecar-table">
+                        <colgroup>
+                            <col />
+                            <col />
+                            <col />
+                            <col />
+                            <col width="240px" />
+                            <col width="240px" />
+                            <col />
+                            <col />
+                            <col />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Icon</th>
+                                <th>Article name</th>
+                                <th>Source format</th>
+                                <th>Custom TOC icon path</th>
+                                <th>Vetical/Horizontal layout path</th>
+                                <th>Vetical/Horizontal layout name</th>
+                                <th>Smooth scrolling</th>
+                                <th>H-swipe</th>                                
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: rowsCollection">
+                            <tr>
+                                <td colspan="10" class="transparent">
+                                    <span class="article_name" data-bind="text: row().article_name"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="transparent">
+                                    <span class="icon icon-toc"></span>
+                                </td>
+                                <td>
+                                    <textarea data-bind="value: row().article_name" placeholder="Article name"></textarea>
+                                </td>
+                                <td>
+                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format"></select>
+                                </td>
+                                <td>
+                                    <input type="text" data-bind="value: row().custom_toc_icon" placeholder="Custom TOC icon path"/>
+                                </td>
+                                <td class="width-80">
+                                    <span>
+                                        <input type="text" data-bind="value: row().vertical_file_location" placeholder="Vertical layout path" />
+                                    </span>
+                                    <span>
+                                        <input type="text" data-bind="value: row().horizontal_file_location" placeholder="Horizontal layout path"/>
+                                    </span>
+                                </td>
+                                <td class="width-80">
+                                    <span>
+                                        <input type="text" data-bind="value: row().vertical_file_layout_name" placeholder="Vertical layout name" />
+                                    </span>
+                                    <span>
+                                        <input type="text" data-bind="value: row().horizontal_file_layout_name" placeholder="Horizontal layout name" />
+                                    </span>
+                                </td>
+                                <td>
+                                    <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
+                                    <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
+                                    <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
+                                    <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <label data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Never</label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" data-bind="checked: row().flattened_stack" />
+                                </td>
+                                <td>
+                                    <button data-bind="click: $parent.removeRow">Remove row</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="button-set">        
+                        <button data-bind="click: addNewRow">Add new row</button>
+                    </div>
+                </div>
 
-            <div class="button-set">        
-                <button data-bind="click: addNewRow">Add new row</button>
-                <button data-bind="click: generateSidecar">Generate</button>
+                <!-- XML SOURCE -->
+                <div class="tab-pane" data-bind="css: { active: sections()[2].isSelected() }">                    
+                    <div class="output">
+                        <pre><code data-bind="text: generatedXML()"></code></pre>
+                    </div>
+                </div>
             </div>
 
-            <div class="output">
-                <textarea data-bind="value: generatedXML()"></textarea>
-            </div>
-        </div>
+        </section>
+        
+        <footer>
+            
+        </footer>
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="assets/js/xml2json.min.js"></script>
@@ -132,5 +229,6 @@
         <script type='text/javascript' src='assets/js/structure.js'></script>
         <script type='text/javascript' src='assets/js/filereader.js'></script>
         <script type='text/javascript' src='assets/js/table.js'></script>
+
     </body>
 </html>

@@ -7,7 +7,7 @@ function sidecarStructure() {
         {value: 'html', label: 'HTML'}
     ];
     
-    self.fields = [
+    self.fields = 
         {
           article_name: "",
           source_format : ['indd'],
@@ -26,7 +26,7 @@ function sidecarStructure() {
           flattened_stack : false,
           article_access : 'free'
         }
-    ];    
+    ;    
     
     self.generateXml = function(rowsCollection) {
         var sidecarObj = {sidecar: {entry: []}};
@@ -56,7 +56,7 @@ function sidecarStructure() {
     /**
      * Convert fields object to structure ready to be xmlized
      */
-    self.prepareJsonObject = function(item) {
+    self.prepareJsonObject = function(item) {        
         var object = {
           contentSource: {
             articleName: item.row().article_name,
