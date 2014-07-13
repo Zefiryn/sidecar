@@ -73,6 +73,14 @@ function SidecarViewModel() {
       $('#sidecar_file').trigger('click');  
     };
     
+    self.exportXml = function() {
+        if (self.generatedXML() == "") {
+            self.generateSidecar();
+        }
+        var sidecarFile = new Blob([self.generatedXML()], {type: "text/xml;charset=utf-8"});
+        saveAs(sidecarFile, "sidecar.xml");
+    };
+    
     //initial table with one empty row
     self.rowsCollection = ko.observableArray([
       new SidecarRow(self.structure.fields)
