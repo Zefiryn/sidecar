@@ -224,6 +224,7 @@ section .tab-content .output pre {
 }
 section .tab-content .output pre code {
   display: block;
+  font-family: source-code-pro, sans-serif;
 }
 section .tab-content .output pre .line-number {
   float: left;
