@@ -42,7 +42,7 @@
                 </ul>
             </nav>
         </header>
-        <section class="container">               
+        <section class="container">
             <div class="tab-content">
                 <!-- METADATA -->
                 <div class="tab-pane active" data-bind="css: { active: sections()[0].isSelected() }">
@@ -112,13 +112,13 @@
                                     <input type="checkbox" data-bind="checked: row().hide" />
                                 </td>                                    
                                 <td>
-                                    <button data-bind="click: $parent.removeRow">Remove row</button>
+                                    <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="button-set">        
-                        <button data-bind="click: addNewRow">Add new row</button>
+                        <button class="square btn-add" data-bind="click: addNewRow">Add new row</button>
                     </div>
                 </div>
 
@@ -198,7 +198,7 @@
                                     <input type="checkbox" data-bind="checked: row().flattened_stack" />
                                 </td>
                                 <td>
-                                    <button data-bind="click: $parent.removeRow">Remove row</button>
+                                    <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -229,6 +229,5 @@
         <script type='text/javascript' src='assets/js/structure.js'></script>
         <script type='text/javascript' src='assets/js/filereader.js'></script>
         <script type='text/javascript' src='assets/js/table.js'></script>
-
     </body>
 </html>

@@ -94,8 +94,14 @@ header {
                 height: 50px;
                 border: 0px;
                 &.round {
-                    background: #97A2CE;
+                    background-color: #BAC1DF;
                     .border-radius(50px);
+										
+										&:hover {cursor: pointer; background-color: #97A2CE;}
+
+										&.btn-import {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -51px 4px}
+										&.btn-export {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: 5px 5px;}
+										&.btn-help {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -107px 5px;}
                 }
             }
         }
@@ -104,8 +110,8 @@ header {
 
 section {
     
-    padding-top: 170px;
     .flex(1);
+		padding: 170px 10px 0px 10px;
 
     .tab-content {
 
@@ -155,7 +161,8 @@ section {
                     background: #ECECEC;
                     padding: 13px 10px 8px;
                     .box-sizing(border-box);
-                }
+										resize: none;
+                }							
             }
         }
 
@@ -189,6 +196,25 @@ section {
                 clear: both;
             }
         }
+
+				button {
+						width: 40px;
+						height: 40px;
+						border: 0px;
+						text-indent: -9999px;						
+						&:hover {cursor: pointer;}
+						&.square {
+								background-color: #5264AE;
+								&.btn-add {
+									background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -156px 0px;
+									&:hover {background-color: #009245;}
+								}
+								&.btn-remove {
+									background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -204px 0px;
+									&:hover {background-color: #C1272D;}
+								}
+						}
+				}
     }    
 }
 
