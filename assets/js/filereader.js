@@ -2,6 +2,9 @@
 function fileReader() {
     var self = this;
     
+    /**
+     * Read selected file and call provided callback function on the result
+     */
     self.readXmlFile = function(obj, evt, callback) {
         var file = evt.target.files[0]; 
         if (file.type.match('text.*')) {

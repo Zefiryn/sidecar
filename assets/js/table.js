@@ -26,12 +26,13 @@ function SidecarViewModel() {
     //instances of utility classes
     self.structure = new sidecarStructure();
     self.reader = new fileReader();
-		self.decorator = new Decorator();
+    self.decorator = new Decorator();
     
     /**
      * Sidecar table functions
      */    
     self.sourceFormats = ko.observableArray(self.structure.sourceFormats);    
+    self.accessOptions = ko.observableArray(self.structure.accessOptions); 
     self.generatedXML = ko.observable("");
     
     // Add new row to the table
@@ -50,7 +51,10 @@ function SidecarViewModel() {
       self.generatedXML(self.structure.generateXml(self.rowsCollection()));
       self.decorator.outputCodeDecoration(self.generatedXML());
     };
-       
+
+    /**
+     * Import new collection from xml string
+     */
     self.importSidecarData = function(xmlstr) {
         self.rowsCollection.removeAll();
         self.generatedXML("");
@@ -62,17 +66,21 @@ function SidecarViewModel() {
         self.reader.readXmlFile(obj, evt, self.importSidecarData);
     };
     
+    /**
+     * Trigger click of file input
+     */
     self.showImportBox = function() {
       $('#sidecar_file').trigger('click');  
     };
     
-    /**
-     * Section handling functions
-     */    
+    //initial table with one empty row
     self.rowsCollection = ko.observableArray([
       new SidecarRow(self.structure.fields)
     ]);
     
+    /**
+     * Section handling functions
+     */    
     self.selectedSection = ko.observable();
     
     self.sections = ko.observableArray([
@@ -83,11 +91,11 @@ function SidecarViewModel() {
     
     //inialize to the first section
     self.selectedSection(self.sections()[0]);
-		
-		//make sure to keep all inputs height in sync
-		$('document').ready(function(){
-			$('textarea, input[type="text"]').on('keydown, keyup', self.decorator.inputHeightMatch);
-		});
+    
+    //make sure to keep all inputs height in sync
+    $('document').ready(function(){
+      $('textarea, input[type="text"]').on('keydown, keyup', self.decorator.inputHeightMatch);
+    });
 }
 
 var viewModel = new SidecarViewModel();

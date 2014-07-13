@@ -96,12 +96,12 @@ header {
                 &.round {
                     background-color: #BAC1DF;
                     .border-radius(50px);
-										
-										&:hover {cursor: pointer; background-color: #97A2CE;}
+                    
+                    &:hover {cursor: pointer; background-color: #97A2CE;}
 
-										&.btn-import {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -51px 4px}
-										&.btn-export {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: 5px 5px;}
-										&.btn-help {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -107px 5px;}
+                    &.btn-import {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -51px 4px}
+                    &.btn-export {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: 5px 5px;}
+                    &.btn-help {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -107px 5px;}
                 }
             }
         }
@@ -111,7 +111,7 @@ header {
 section {
     
     .flex(1);
-		padding: 170px 10px 0px 10px;
+    padding: 170px 10px 0px 10px;
 
     .tab-content {
 
@@ -152,18 +152,51 @@ section {
                         width: 100%;
                         margin-bottom: 5px;
                     }
+
+                    .article_name {
+                        color: #5264AE;
+                        font-weight: 300;
+                        font-size: 16px;
+                        padding-top: 10px;
+                    }
                 }
                 
                 textarea, input[type="text"], select {
-                    height: 45px;
-										overflow: hidden;
+                    height: 40px;
+                    overflow: hidden;
                     border: 0px;
                     width: 100%;
                     background: #ECECEC;
-                    padding: 13px 10px 8px;
+                    padding: 10px 10px 8px;
                     .box-sizing(border-box);
-										resize: none;
-                }							
+                    resize: none;
+                    font-size: 12px;
+                }
+
+                input[type="checkbox"] {
+                    
+                    &:after {
+                        cursor: pointer;
+                        content: "No";
+                        display: block;
+                        background: #7F7F7F;
+                        color: #fff;
+                        font-weight: 600;
+                        font-size: 16px;
+                        text-align: center;
+                        line-height: 40px;
+                        width: 40px;
+                        height: 40px;
+                        margin-top: -4px;                        
+                    }
+                    &:hover:after {
+                        background: #aaa !important;
+                    }
+                    &:checked:after {
+                      content: "Yes";
+                      background: #97A2CE;
+                    }
+                }
             }
         }
 
@@ -198,24 +231,28 @@ section {
             }
         }
 
-				button {
-						width: 40px;
-						height: 40px;
-						border: 0px;
-						text-indent: -9999px;						
-						&:hover {cursor: pointer;}
-						&.square {
-								background-color: #5264AE;
-								&.btn-add {
-									background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -156px 0px;
-									&:hover {background-color: #009245;}
-								}
-								&.btn-remove {
-									background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -204px 0px;
-									&:hover {background-color: #C1272D;}
-								}
-						}
-				}
+        .buttons-set {
+            margin-top: 20px;
+        }
+
+        button {
+            width: 40px;
+            height: 40px;
+            border: 0px;
+            text-indent: -9999px;            
+            &:hover {cursor: pointer;}
+            &.square {
+                background-color: #5264AE;
+                &.btn-add {
+                  background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -156px 0px;
+                  &:hover {background-color: #009245;}
+                }
+                &.btn-remove {
+                  background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -204px 0px;
+                  &:hover {background-color: #C1272D;}
+                }
+            }
+        }
     }    
 }
 

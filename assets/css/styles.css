@@ -171,19 +171,47 @@ section .tab-content .sidecar-table tbody td span {
   width: 100%;
   margin-bottom: 5px;
 }
+section .tab-content .sidecar-table tbody td .article_name {
+  color: #5264AE;
+  font-weight: 300;
+  font-size: 16px;
+  padding-top: 10px;
+}
 section .tab-content .sidecar-table tbody textarea,
 section .tab-content .sidecar-table tbody input[type="text"],
 section .tab-content .sidecar-table tbody select {
-  height: 45px;
+  height: 40px;
   overflow: hidden;
   border: 0px;
   width: 100%;
   background: #ECECEC;
-  padding: 13px 10px 8px;
+  padding: 10px 10px 8px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   resize: none;
+  font-size: 12px;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:after {
+  cursor: pointer;
+  content: "No";
+  display: block;
+  background: #7F7F7F;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin-top: -4px;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:hover:after {
+  background: #aaa !important;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:checked:after {
+  content: "Yes";
+  background: #97A2CE;
 }
 section .tab-content .output pre {
   width: 80%;
@@ -212,6 +240,9 @@ section .tab-content .output pre .line-number span {
 section .tab-content .output pre .cl {
   display: block;
   clear: both;
+}
+section .tab-content .buttons-set {
+  margin-top: 20px;
 }
 section .tab-content button {
   width: 40px;
