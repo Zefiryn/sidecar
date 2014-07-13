@@ -26,11 +26,11 @@ function SidecarViewModel() {
     //instances of utility classes
     self.structure = new sidecarStructure();
     self.reader = new fileReader();
+		self.decorator = new Decorator();
     
     /**
      * Sidecar table functions
-     */
-    
+     */    
     self.sourceFormats = ko.observableArray(self.structure.sourceFormats);    
     self.generatedXML = ko.observable("");
     
@@ -48,20 +48,9 @@ function SidecarViewModel() {
     // Generate xml file
     self.generateSidecar = function() {        
       self.generatedXML(self.structure.generateXml(self.rowsCollection()));
-      self.outputDecoration();
+      self.decorator.outputCodeDecoration(self.generatedXML());
     };
-    
-    self.outputDecoration = function() {
-        $('.output .line-number, .output .cl').remove();
-        $('pre code').before('<span class="line-number"></span>');
-        $('pre code').after('<span class="cl"></span>');
-        var num = self.generatedXML().split(/\n/).length;
-        for (var j = 0; j < num; j++) {
-            var line_num = $('span.line-number')[0];
-            line_num.innerHTML += '<span>' + (j + 1) + '</span>';
-        }        
-    };
-    
+       
     self.importSidecarData = function(xmlstr) {
         self.rowsCollection.removeAll();
         self.generatedXML("");
@@ -94,6 +83,11 @@ function SidecarViewModel() {
     
     //inialize to the first section
     self.selectedSection(self.sections()[0]);
+		
+		//make sure to keep all inputs height in sync
+		$('document').ready(function(){
+			$('textarea, input[type="text"]').on('keydown, keyup', self.decorator.inputHeightMatch);
+		});
 }
 
 var viewModel = new SidecarViewModel();

@@ -78,24 +78,24 @@
                                     <span class="article_name" data-bind="text: row().article_name"></span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr  data-bind="attr: {id: 'metadata-art-' + $index()}">
                                 <td class="transparent">
                                     <span class="icon icon-toc"></span>
                                 </td>
                                 <td class="width-60">
-                                    <textarea data-bind="value: row().article_title" placeholder="Article title"></textarea>
+                                    <textarea  maxlength="60" data-bind="value: row().article_title" placeholder="Article title"></textarea>
                                 </td>
                                 <td class="width-40">
-                                    <textarea data-bind="value: row().author" placeholder="Author"></textarea>
+                                    <textarea  maxlength="40" data-bind="value: row().author" placeholder="Author"></textarea>
                                 </td>
                                 <td class="width-40">
-                                    <textarea data-bind="value: row().kicker" placeholder="Kicker"></textarea>
+                                    <textarea  maxlength="40" data-bind="value: row().kicker" placeholder="Kicker"></textarea>
                                 </td>
                                 <td class="width-120">
-                                    <textarea data-bind="value: row().description" placeholder="Description"></textarea>
+                                    <textarea maxlength="120" data-bind="value: row().description" placeholder="Description"></textarea>
                                 </td>
                                 <td class="width-40">
-                                    <textarea data-bind="value: row().tags" placeholder="Tags"></textarea>
+                                    <textarea maxlength="40" data-bind="value: row().tags" placeholder="Tags"></textarea>
                                 </td>
                                 <td>
                                     <input type="radio" value="free" data-bind="checked: row().article_access, attr: {id: 'article_access_free' + $index(), name: 'article_access['+ $index() +']'}" />
@@ -155,7 +155,7 @@
                                     <span class="article_name" data-bind="text: row().article_name"></span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr data-bind="attr: {id: 'content-source-art-' + $index()}">
                                 <td class="transparent">
                                     <span class="icon icon-toc"></span>
                                 </td>
@@ -204,7 +204,7 @@
                         </tbody>
                     </table>
                     <div class="button-set">        
-                        <button data-bind="click: addNewRow">Add new row</button>
+                        <button class="square btn-add" data-bind="click: addNewRow">Add new row</button>
                     </div>
                 </div>
 
@@ -228,6 +228,7 @@
         <script type='text/javascript' src='assets/js/knockout.js'></script>
         <script type='text/javascript' src='assets/js/structure.js'></script>
         <script type='text/javascript' src='assets/js/filereader.js'></script>
+				<script type='text/javascript' src='assets/js/decorator.js'></script>
         <script type='text/javascript' src='assets/js/table.js'></script>
     </body>
 </html>

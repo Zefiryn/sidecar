@@ -9,22 +9,22 @@ function sidecarStructure() {
     
     self.fields = 
         {
-          article_name: "",
-          source_format : ['indd'],
-          custom_toc_icon : "",
-          vertical_file_location : "",
-          vertical_file_layout_name : "",
-          horizontal_file_location : "",
-          horizontal_file_layout_name : "",
-          article_title : "",
-          author : "",
-          kicker : "",
-          description : "",
-          tags : "",
-          ads : true,
-          smooth_scrolling : 'never',
-          flattened_stack : false,
-          article_access : 'free'
+          article_name: ko.observable(""),
+          source_format : ko.observable(['indd']),
+          custom_toc_icon : ko.observable(""),
+          vertical_file_location : ko.observable(""),
+          vertical_file_layout_name : ko.observable(""),
+          horizontal_file_location : ko.observable(""),
+          horizontal_file_layout_name : ko.observable(""),
+          article_title : ko.observable(""),
+          author : ko.observable(""),
+          kicker : ko.observable(""),
+          description : ko.observable(""),
+          tags : ko.observable(""),
+          ads : ko.observable(true),
+          smooth_scrolling : ko.observable('never'),
+          flattened_stack : ko.observable(false),
+          article_access : ko.observable('free')
         }
     ;    
     
@@ -92,22 +92,22 @@ function sidecarStructure() {
         var contentSource = item.contentSource;
         var sourceFile = {  v: contentSource.sourceFile_v !== undefined ? contentSource.sourceFile_v : {},
                             h: contentSource.sourceFile_h !== undefined ? contentSource.sourceFile_h : {}};
-        var rowData = {article_name: contentSource.articleName,
-                        source_format : [contentSource.sourceFormat],
-                        custom_toc_icon : contentSource.customTocIcon,
-                        vertical_file_location : sourceFile.v.hasOwnProperty('location') ? sourceFile.v.location : '',
-                        vertical_file_layout_name : sourceFile.v.hasOwnProperty('layoutName') ? sourceFile.v.layoutName : '',
-                        horizontal_file_location : sourceFile.h.hasOwnProperty('location') ? sourceFile.h.location : '',
-                        horizontal_file_layout_name : sourceFile.h.hasOwnProperty('layoutName') ? sourceFile.h.layoutName : '',
-                        article_title : item.articleTitle,
-                        author : item.author,
-                        kicker : item.kicker,
-                        description : item.description,
-                        tags : item.tags,
-                        ads : item.isAd === 'true',
-                        smooth_scrolling : item.smoothScrolling,
-                        flattened_stack : item.isFlattenedStack === 'true',
-                        article_access : item.articleAccess
+        var rowData = {article_name: ko.observable(contentSource.articleName),
+                        source_format : ko.observable([contentSource.sourceFormat]),
+                        custom_toc_icon : ko.observable(contentSource.customTocIcon),
+                        vertical_file_location : ko.observable(sourceFile.v.hasOwnProperty('location') ? sourceFile.v.location : ''),
+                        vertical_file_layout_name : ko.observable(sourceFile.v.hasOwnProperty('layoutName') ? sourceFile.v.layoutName : ''),
+                        horizontal_file_location : ko.observable(sourceFile.h.hasOwnProperty('location') ? sourceFile.h.location : ''),
+                        horizontal_file_layout_name : ko.observable(sourceFile.h.hasOwnProperty('layoutName') ? sourceFile.h.layoutName : ''),
+                        article_title : ko.observable(item.articleTitle),
+                        author : ko.observable(item.author),
+                        kicker : ko.observable(item.kicker),
+                        description : ko.observable(item.description),
+                        tags : ko.observable(item.tags),
+                        ads : ko.observable(item.isAd === 'true'),
+                        smooth_scrolling : ko.observable(item.smoothScrolling),
+                        flattened_stack : ko.observable(item.isFlattenedStack === 'true'),
+                        article_access : ko.observable(item.articleAccess)
                       };
                       
         return rowData;

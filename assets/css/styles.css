@@ -174,7 +174,8 @@ section .tab-content .sidecar-table tbody td span {
 section .tab-content .sidecar-table tbody textarea,
 section .tab-content .sidecar-table tbody input[type="text"],
 section .tab-content .sidecar-table tbody select {
-  height: 40px;
+  height: 45px;
+  overflow: hidden;
   border: 0px;
   width: 100%;
   background: #ECECEC;
