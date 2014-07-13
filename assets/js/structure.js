@@ -1,6 +1,13 @@
 //Class that fold sidecar file structure and manipulation
 function sidecarStructure() {
     var self = this;
+		
+		self.outputHeaderString = '<!--\n\
+sidecar.xml generated using http://inplus.io/sidecar-xml\n\
+Version 0.1 beta\n\
+To edit this sidecar, import it into the generator again.\n\
+ -->\n\
+<?xml version="1.0" encoding="UTF-8" standalone="true" ?>';
     
     self.sourceFormats = [
         {value: 'indd', label: 'InDesign'},
@@ -37,7 +44,7 @@ function sidecarStructure() {
         });
 
         var sidecarXmlString = x2js.json2xml_str(sidecarObj);
-        return formatXml(sidecarXmlString);
+        return self.outputHeaderString + "\n" + formatXml(sidecarXmlString);
     };
     
     self.importFromXml = function(xmlstr) {
@@ -59,27 +66,27 @@ function sidecarStructure() {
     self.prepareJsonObject = function(item) {        
         var object = {
           contentSource: {
-            articleName: item.row().article_name,
-            sourceFormat: item.row().source_format,
-            customTocIcon: item.row().custom_toc_icon,
+            articleName: item.row().article_name(),
+            sourceFormat: item.row().source_format(),
+            customTocIcon: item.row().custom_toc_icon(),
             sourceFile_v: {
-              location: item.row().vertical_file_location,
-              layoutName: item.row().vertical_file_layout_name
+              location: item.row().vertical_file_location(),
+              layoutName: item.row().vertical_file_layout_name()
             },
             sourceFile_h: {
-              location: item.row().horizontal_file_location,
-              layoutName: item.row().horizontal_file_layout_name
+              location: item.row().horizontal_file_location(),
+              layoutName: item.row().horizontal_file_layout_name()
             }
           },
-          articleTitle: item.row().article_title,
-          author: item.row().author,
-          kicker: item.row().kicker,
-          description: item.row().description,
-          tags: item.row().tags,
-          isAd: item.row().ads,
-          smoothScrolling: item.row().smooth_scrolling,
-          isFlattenedStack: item.row().flattened_stack,
-          articleAccess: item.row().article_access
+          articleTitle: item.row().article_title(),
+          author: item.row().author(),
+          kicker: item.row().kicker(),
+          description: item.row().description(),
+          tags: item.row().tags(),
+          isAd: item.row().ads(),
+          smoothScrolling: item.row().smooth_scrolling(),
+          isFlattenedStack: item.row().flattened_stack(),
+          articleAccess: item.row().article_access()
         };
         
         return object;

@@ -13,6 +13,7 @@ function Decorator() {
 					var line_num = $('span.line-number')[0];
 					line_num.innerHTML += '<span>' + (j + 1) + '</span>';
 			}
+			 hljs.highlightBlock($('pre code')[0]);
 	};
 	
 	self.inputHeightMatch = function(event) {

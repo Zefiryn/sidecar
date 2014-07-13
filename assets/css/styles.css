@@ -273,3 +273,15 @@ footer {
   font-size: 13px;
   font-weight: 400;
 }
+.hljs-comment {
+  color: #29ABE2;
+}
+.hljs-pi {
+  color: #39B54A;
+}
+.hljs-tag {
+  color: #FBB03B;
+}
+.hljs-tag .hljs-title {
+  color: inherit;
+}
