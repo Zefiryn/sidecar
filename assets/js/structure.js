@@ -32,12 +32,12 @@ function sidecarStructure() {
         article_access: ko.observable(['free'])
     };
     
-    self.outputHeaderString = '<!--\n\
-sidecar.xml generated using http://inplus.io/sidecar-xml\n\
-Version 0.1 beta\n\
-To edit this sidecar, import it into the generator again.\n\
- -->\n\
-<?xml version="1.0" encoding="UTF-8" standalone="true" ?>';
+    self.outputHeaderString = "<!--\r\n\
+sidecar.xml generated using http://inplus.io/sidecar-xml\r\n\
+Version 0.1 beta\r\n\
+To edit this sidecar, import it into the generator again.\r\n\
+ -->\r\n\
+<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"true\" ?>";
 
     /**
      * Generate xml code from table data
@@ -51,7 +51,7 @@ To edit this sidecar, import it into the generator again.\n\
         });
 
         var sidecarXmlString = x2js.json2xml_str(sidecarObj);
-        return $.trim(self.outputHeaderString + "\n" + formatXml(sidecarXmlString));
+        return $.trim(formatXml(self.outputHeaderString + "\r\n" + sidecarXmlString));
     };
 
     /**
