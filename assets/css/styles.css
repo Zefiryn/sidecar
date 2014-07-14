@@ -266,6 +266,20 @@ section .tab-content .sidecar-table tbody input[type="radio"] + label + br {
 section .tab-content .sidecar-table tbody input[type="radio"]:checked + label {
   background-color: #97A2CE;
 }
+section .tab-content .sidecar-table tbody .icon {
+  background-image: url('../images/icons.png');
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+section .tab-content .sidecar-table tbody .icon.icon-toc {
+  background-position: -158px -57px;
+}
+section .tab-content .sidecar-table tbody .icon.icon-toc.toc {
+  background-position: 0px 0px;
+}
 section .tab-content .output pre {
   width: 80%;
   margin: 0px auto;

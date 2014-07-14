@@ -2,6 +2,9 @@
 function SidecarRow(row) {
     var self = this;
     self.row = ko.observable(row);
+    self.hasTocIcon = ko.computed(function() {
+        return this.row().toc_image() != "";
+    }, this);
 }
 
 //Class that represents tab section

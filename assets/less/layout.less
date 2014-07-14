@@ -172,9 +172,11 @@ section {
                     resize: none;
                     font-size: 12px;
                 }
+
                 input[type="checkbox"] {
                     display: none;
                 }
+
                 .checkbox-label {
                     cursor: pointer;
                     display: block;
@@ -193,6 +195,7 @@ section {
                     .checked {display: none;}
                     .unchecked {display: inline;}
                 }
+
                 input[type="checkbox"]:checked + .checkbox-label {
                     background: #97A2CE;
                     .checked {display: inline;}
@@ -234,6 +237,22 @@ section {
                     &:checked + label {
                         background-color: #97A2CE;
                     }
+                }
+
+                .icon {
+                    background-image: url('../images/icons.png');
+                    background-position: 0px 0px;
+                    background-repeat: no-repeat;
+                    width: 40px;
+                    height: 40px;
+                    display: block;
+                    &.icon-toc {
+                        background-position: -158px -57px;
+                        &.toc {
+                            background-position: 0px 0px;
+                        }
+                    }
+                    
                 }
             }
         }
