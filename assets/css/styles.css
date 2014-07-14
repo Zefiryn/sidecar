@@ -213,11 +213,14 @@ section .tab-content .sidecar-table tbody .checkbox-label:hover {
 section .tab-content .sidecar-table tbody .checkbox-label .checked {
   display: none;
 }
+section .tab-content .sidecar-table tbody .checkbox-label .unchecked {
+  display: inline;
+}
 section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label {
   background: #97A2CE;
 }
 section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label .checked {
-  display: initial;
+  display: inline;
 }
 section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label .unchecked {
   display: none;
