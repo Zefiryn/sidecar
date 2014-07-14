@@ -215,6 +215,47 @@ section .tab-content .sidecar-table tbody input[type="checkbox"]:checked:after {
   content: "Yes";
   background: #97A2CE;
 }
+section .tab-content .sidecar-table tbody input[type="radio"] {
+  cursor: pointer;
+  display: none;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label {
+  cursor: pointer;
+  display: block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  background-color: #7F7F7F;
+  text-indent: -9999px;
+  background-image: url('../images/icons.png');
+  background-repeat: no-repeat;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label:hover {
+  background-color: #aaa !important;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-always {
+  background-position: 0px -60px;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-portrait {
+  background-position: -55px -60px;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-landscape {
+  background-position: -110px -60px;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-never {
+  background-image: none;
+  display: block;
+  text-indent: 0px;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+section .tab-content .sidecar-table tbody input[type="radio"] + label + br {
+  display: none;
+}
+section .tab-content .sidecar-table tbody input[type="radio"]:checked + label {
+  background-color: #97A2CE;
+}
 section .tab-content .output pre {
   width: 80%;
   margin: 0px auto;

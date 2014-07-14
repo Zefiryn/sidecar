@@ -196,6 +196,43 @@ section {
                       background: #97A2CE;
                     }
                 }
+
+                input[type="radio"] {
+                    cursor: pointer;
+                    display: none;
+                    & + label {
+                        cursor: pointer;
+                        display: block;
+                        float: left;
+                        width: 40px;
+                        height: 40px;
+                        background-color: #7F7F7F;
+                        text-indent: -9999px;
+                        background-image: url('../images/icons.png');
+                        background-repeat: no-repeat;
+
+                        &:hover { 
+                            background-color: #aaa !important;
+                        }
+
+                        &.scroll-always {background-position: 0px -60px;}
+                        &.scroll-portrait {background-position: -55px -60px;}
+                        &.scroll-landscape {background-position: -110px -60px;}
+                        &.scroll-never {
+                            background-image: none;
+                            display: block;
+                            text-indent: 0px;
+                            color: #fff;
+                            text-align: center;
+                            line-height: 40px;
+                        }
+                    
+                        & + br {display: none;}
+                    }
+                    &:checked + label {
+                        background-color: #97A2CE;
+                    }
+                }
             }
         }
 

@@ -128,7 +128,7 @@
                             <col />
                             <col width="240px" />
                             <col width="240px" />
-                            <col />
+                            <col width="165px"/>
                             <col />
                             <col />
                         </colgroup>
@@ -183,13 +183,13 @@
                                 </td>
                                 <td>
                                     <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                                    <label data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
+                                    <label class="scroll-always" data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
                                     <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                                    <label data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
+                                    <label class="scroll-portrait" data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
                                     <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                                    <label data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
+                                    <label class="scroll-landscape" data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
                                     <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
-                                    <label data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Never</label>
+                                    <label class="scroll-never" data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Off</label>
                                 </td>
                                 <td>
                                     <input type="checkbox" data-bind="checked: row().flattened_stack" />
