@@ -94,7 +94,7 @@ function SidecarViewModel() {
     
     //make sure to keep all inputs height in sync
     $('document').ready(function(){
-      $('textarea, input[type="text"]').on('keydown, keyup', self.decorator.inputHeightMatch);
+      $('#metadata-table').on('keydown, keyup', 'textarea, input[type="text"]', self.decorator.inputHeightMatch);
     });
 }
 

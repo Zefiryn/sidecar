@@ -46,7 +46,7 @@
             <div class="tab-content">
                 <!-- METADATA -->
                 <div class="tab-pane active" data-bind="css: { active: sections()[0].isSelected() }">
-                    <table class="sidecar-table">
+                    <table class="sidecar-table" id="metadata-table">
                         <colgroup>
                             <col width="40px" />
                             <col width="180px" />
@@ -120,7 +120,7 @@
 
                 <!-- CONTENT SOURCE -->
                 <div class="tab-pane" data-bind="css: { active: sections()[1].isSelected() }">
-                    <table class="sidecar-table">
+                    <table class="sidecar-table"  id="content-source-table">
                         <colgroup>
                             <col width="40px" />
                             <col />
