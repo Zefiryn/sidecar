@@ -172,29 +172,30 @@ section {
                     resize: none;
                     font-size: 12px;
                 }
-
                 input[type="checkbox"] {
+                    display: none;
+                }
+                .checkbox-label {
                     cursor: pointer;
-                    &:after {                        
-                        content: "No";
-                        display: block;
-                        background: #7F7F7F;
-                        color: #fff;
-                        font-weight: 600;
-                        font-size: 16px;
-                        text-align: center;
-                        line-height: 40px;
-                        width: 40px;
-                        height: 40px;
-                        margin-top: -4px;                        
-                    }
-                    &:hover:after {
+                    display: block;
+                    background: #7F7F7F;
+                    color: #fff;
+                    font-weight: 600;
+                    font-size: 16px;
+                    text-align: center;
+                    line-height: 40px;
+                    width: 40px;
+                    height: 40px;
+                    
+                    &:hover {
                         background: #aaa !important;
                     }
-                    &:checked:after {
-                      content: "Yes";
-                      background: #97A2CE;
-                    }
+                    .checked {display: none;}
+                }
+                input[type="checkbox"]:checked + .checkbox-label {
+                    background: #97A2CE;
+                    .checked {display: initial;}
+                    .unchecked {display: none;}
                 }
 
                 input[type="radio"] {

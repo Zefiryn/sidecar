@@ -102,10 +102,18 @@
                                     <select data-bind="options: $root.accessOptions, optionsText: 'label', optionsValue: 'value', selectedOptions: row().article_access"></select>
                                 </td>
                                 <td style="width: 45px;">
-                                    <input type="checkbox" data-bind="checked: row().ads" />
+                                    <input type="checkbox" data-bind="checked: row().ads, attr: {id: 'ads_' + $index()}"  />
+                                    <label class="checkbox-label" data-bind="attr: {for: 'ads_' + $index()}">
+                                      <span class="checked">On</span>
+                                      <span class="unchecked">Off</span>
+                                    </label>
                                 </td>
                                 <td style="width: 45px;">
-                                    <input type="checkbox" data-bind="checked: row().hide" />
+                                    <input type="checkbox" data-bind="checked: row().hide, attr: {id: 'hide_' + $index()}" />
+                                    <label class="checkbox-label" data-bind="attr: {for: 'hide_' + $index()}">
+                                      <span class="checked">On</span>
+                                      <span class="unchecked">Off</span>
+                                    </label>
                                 </td>                                    
                                 <td>
                                     <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
@@ -192,7 +200,11 @@
                                     <label class="scroll-never" data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Off</label>
                                 </td>
                                 <td>
-                                    <input type="checkbox" data-bind="checked: row().flattened_stack" />
+                                    <input type="checkbox" data-bind="checked: row().flattened_stack, attr: {id: 'flattened_stack_' + $index()}" />
+                                    <label class="checkbox-label" data-bind="attr: {for: 'flattened_stack_' + $index()}">
+                                      <span class="checked">On</span>
+                                      <span class="unchecked">Off</span>
+                                    </label>
                                 </td>
                                 <td>
                                     <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>

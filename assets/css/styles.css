@@ -193,10 +193,10 @@ section .tab-content .sidecar-table tbody select {
   font-size: 12px;
 }
 section .tab-content .sidecar-table tbody input[type="checkbox"] {
-  cursor: pointer;
+  display: none;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:after {
-  content: "No";
+section .tab-content .sidecar-table tbody .checkbox-label {
+  cursor: pointer;
   display: block;
   background: #7F7F7F;
   color: #fff;
@@ -206,14 +206,21 @@ section .tab-content .sidecar-table tbody input[type="checkbox"]:after {
   line-height: 40px;
   width: 40px;
   height: 40px;
-  margin-top: -4px;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:hover:after {
+section .tab-content .sidecar-table tbody .checkbox-label:hover {
   background: #aaa !important;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:checked:after {
-  content: "Yes";
+section .tab-content .sidecar-table tbody .checkbox-label .checked {
+  display: none;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label {
   background: #97A2CE;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label .checked {
+  display: initial;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label .unchecked {
+  display: none;
 }
 section .tab-content .sidecar-table tbody input[type="radio"] {
   cursor: pointer;
