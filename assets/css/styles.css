@@ -192,8 +192,10 @@ section .tab-content .sidecar-table tbody select {
   resize: none;
   font-size: 12px;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:after {
+section .tab-content .sidecar-table tbody input[type="checkbox"] {
   cursor: pointer;
+}
+section .tab-content .sidecar-table tbody input[type="checkbox"]:after {
   content: "No";
   display: block;
   background: #7F7F7F;
