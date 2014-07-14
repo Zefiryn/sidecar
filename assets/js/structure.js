@@ -32,12 +32,12 @@ function sidecarStructure() {
         article_access: ko.observable(['free'])
     };
     
-    self.outputHeaderString = "<!--\r\n\
+    self.outputHeaderString = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\r\n\
+<!--\r\n\
 sidecar.xml generated using http://inplus.io/sidecar-xml\r\n\
 Version 0.1 beta\r\n\
 To edit this sidecar, import it into the generator again.\r\n\
- -->\r\n\
-<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"true\" ?>";
+ -->";
 
     /**
      * Generate xml code from table data
