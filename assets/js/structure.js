@@ -35,6 +35,8 @@ function sidecarStructure() {
         article_access: ko.observable(['free'])
     };
     
+    self.updateOnly = ko.observable(false);
+    
     self.outputHeaderString = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\r\n\
 <!--\r\n\
 sidecar.xml generated using http://inplus.io/sidecar-xml\r\n\
@@ -46,7 +48,12 @@ To edit this sidecar, import it into the generator again.\r\n\
      * Generate xml code from table data
      */
     self.generateXml = function(rowsCollection) {
-        var sidecarObj = {sidecar: {entry: []}};
+        if (self.updateOnly() === true) {
+            var sidecarObj = {sidecar: {metadataUpdateOnly: null, entry: []}};
+        }
+        else {
+            var sidecarObj = {sidecar: {entry: []}};
+        }
         var x2js = new X2JS({escapeMode: false});
         ko.utils.arrayForEach(rowsCollection, function(item, idx) {
             var row = self.prepareJsonObject(item);
@@ -64,6 +71,8 @@ To edit this sidecar, import it into the generator again.\r\n\
         var x2js = new X2JS({escapeMode: false});
         var jsonObj = x2js.xml_str2json(xmlstr);
         var collection = [];
+
+        self.updateOnly(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
 
         ko.utils.arrayForEach(jsonObj.sidecar.entry, function(item, idx) {
             var rowData = self.importRowDataFromXml(item);

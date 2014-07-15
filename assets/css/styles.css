@@ -340,6 +340,109 @@ section .tab-content button.square.btn-remove {
 section .tab-content button.square.btn-remove:hover {
   background-color: #C1272D;
 }
+aside#export-options {
+  width: 40%;
+  height: 400px;
+  background: #fff;
+  -moz-box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 8px 28px rgba(0, 0, 0, 0.5);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  border: 1px solid #97A2CE;
+  left: 50%;
+  top: 50%;
+  margin-left: -20%;
+  margin-top: -200px;
+  font-family: open-sans, sans-serif;
+  color: #444;
+  padding: 25px;
+}
+aside#export-options header {
+  position: initial;
+  background: transparent;
+  color: #444444;
+  font-family: open-sans, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  z-index: 0;
+  width: 100%;
+  padding: 0px;
+}
+aside#export-options p {
+  font-family: open-sans, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #444;
+}
+aside#export-options .metadata-only input {
+  display: none;
+}
+aside#export-options .metadata-only label {
+  font-family: open-sans, sans-serif;
+  color: #5264AE;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+aside#export-options .metadata-only label:before {
+  content: "";
+  background: none;
+  border: 1px solid #AAA;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 0px 5px -5px 0px;
+}
+aside#export-options .metadata-only input:checked + label:before {
+  content: "\2714";
+  text-align: center;
+  color: #000;
+}
+aside#export-options .metadata-only .hint {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  color: #7F7F7F;
+  margin-left: 28px;
+}
+aside#export-options .buttons-set {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+aside#export-options .buttons-set button {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  width: 120px;
+  height: 40px;
+  color: #fff;
+  font-family: open-sans, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: center;
+  border: 0px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+aside#export-options .buttons-set button.decline {
+  background-color: #aaa;
+}
+aside#export-options .buttons-set button.decline:hover {
+  background-color: #7F7F7F;
+}
+aside#export-options .buttons-set button.accept {
+  background-color: #97A2CE;
+}
+aside#export-options .buttons-set button.accept:hover {
+  background-color: #5264AE;
+}
 footer {
   background: #444444;
   min-height: 100px;

@@ -1,7 +1,10 @@
+@sans: open-sans, sans-serif;
+@code: source-code-pro, sans-serif;
+
 html, body {
     margin: 0px;
     padding: 0px;
-    font-family: open-sans, sans-serif;
+    font-family: @sans;
     .flex-display(flex);
     min-height: 100vh;
     .flex-direction(column);
@@ -21,7 +24,7 @@ header {
         margin: 0px 30px;
     }
     h1 {
-        font-family:  open-sans, sans-serif;
+        font-family:  @sans;
         font-size: 30px;
         color: #fff;
         font-weight: lighter;
@@ -264,11 +267,11 @@ section {
             color: #fff;
             line-height: 22px;
             font-size: 14px;
-            font-family: source-code-pro, sans-serif;
+            font-family: @code;
             
             code {
                 display: block;
-                font-family: source-code-pro, sans-serif;
+                font-family: @code;
             }
             .line-number {
                 float: left;
@@ -314,6 +317,107 @@ section {
     }    
 }
 
+aside#export-options {
+    width: 40%;
+    height: 400px;
+    background: #fff;
+    .box-shadow(0px 8px 28px rgba(0,0,0,0.5));
+    .box-sizing(border-box);
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    border: 1px solid #97A2CE;
+    left:50%;
+    top:50%;
+    margin-left: -20%;
+    margin-top: -200px;
+    font-family: @sans;
+    color: #444;
+    padding: 25px;
+
+    header {
+        position: initial;
+        background: transparent;
+        color: #444444;
+        font-family: @sans;
+        font-size: 24px;
+        font-weight: 300;
+        z-index: 0;
+        width: 100%;
+        padding: 0px;
+    }
+
+    p {
+        font-family: @sans;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;   
+        color: #444;
+    }
+    .metadata-only {
+        input {
+           display: none;
+        }
+        label {
+            font-family: @sans;
+            color: #5264AE;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 21px; 
+
+            &:before {
+                content: "";
+                background: none;
+                border: 1px solid #AAA;
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                margin: 0px 5px -5px 0px;
+            }
+        }
+        input:checked + label:before {
+            content: "\2714";
+            text-align: center;
+            color: #000;
+        }
+        
+        .hint {
+            display: block;
+            font-size: 12px;
+            line-height: 18px;
+            color: #7F7F7F;
+            margin-left: 28px;
+        }
+    }
+    .buttons-set {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+
+        button {
+            .border-radius(2px);
+            width: 120px;
+            height: 40px;
+            color: #fff;
+            font-family: @sans;
+            font-size: 16px;
+            font-weight: 300;
+            text-align: center;
+            border: 0px;
+            text-transform: uppercase;
+            cursor: pointer;
+            &.decline {
+                background-color: #aaa;
+                &:hover {background-color: #7F7F7F;}
+            }
+            &.accept {
+                background-color: #97A2CE;
+                &:hover {background-color: #5264AE;}
+            }
+        }
+    }
+}
+
 footer {
     background: #444444;
     min-height: 100px;
@@ -321,7 +425,7 @@ footer {
 }
 
 .hidden {display: none;}
-::-webkit-input-placeholder {color: #969696;font-family: open-sans, sans-serif;font-size: 13px;font-weight: 400;}
-::-moz-placeholder {color: #969696;font-family: open-sans, sans-serif;font-size: 13px;font-weight: 400;}
-::-moz-placeholder {color: #969696;font-family: open-sans, sans-serif;font-size: 13px;font-weight: 400;}
-:-ms-input-placeholder {color: #969696;font-family: open-sans, sans-serif;font-size: 13px;font-weight: 400;}
+::-webkit-input-placeholder {color: #969696;font-family: @sans;font-size: 13px;font-weight: 400;}
+::-moz-placeholder {color: #969696;font-family: @sans;font-size: 13px;font-weight: 400;}
+::-moz-placeholder {color: #969696;font-family: @sans;font-size: 13px;font-weight: 400;}
+:-ms-input-placeholder {color: #969696;font-family: @sans;font-size: 13px;font-weight: 400;}

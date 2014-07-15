@@ -33,7 +33,7 @@
                     </li>
                     <li>
                         <span>Export</span>
-                        <button class="round btn-export" data-bind="event: {click: exportXml}"></button>
+                        <button class="round btn-export" data-bind="event: {click: showExportBox}"></button>
                     </li>
                     <li>
                         <span>Help</span>
@@ -224,12 +224,23 @@
                     </div>
                 </div>
             </div>
-
         </section>
         
-        <footer>
-            
-        </footer>
+        <aside id="export-options">
+            <header>Export sidecar.xml</header>
+            <p>If you want to use the sidecar.xml file to update your article metadata or change the order of articles, you can use the Folio Builder panel to import the sidecar.xml file.</p>
+            <div class="metadata-only">
+                <input type="checkbox" name="metadata-only" id="metadata-only" data-bind="checked: structure.updateOnly, event: {change: setUpdateOnlyFlag}" />
+                <label for="metadata-only">Metadata update only</label>
+                <span class="hint">Check it if you wish to update metadata only in existing articles</span>
+            </div>
+            <div class="buttons-set">
+                <button class="decline" data-bind="event: {click: hideExportBox}">Cancel</button>
+                <button class="accept" data-bind="event: {click: exportXml}">Download</button>
+            </div>
+        </aside>
+        
+        <footer></footer>
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="assets/js/highlight.pack.js"></script>
