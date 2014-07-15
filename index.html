@@ -167,42 +167,42 @@
                                     <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}, style: { backgroundImage: hasTocIcon ? 'url(' + row().toc_image() + ')' : 'url(\'assets/images/icons.png\')'}"></span>
                                 </td>
                                 <td>
-                                    <textarea data-bind="value: row().article_name" placeholder="Article name"></textarea>
+                                    <textarea data-bind="value: row().article_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Article name"></textarea>
                                 </td>
                                 <td>
-                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format"></select>
+                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format, attr: {disabled: $parent.structure.updateOnly()}"></select>
                                 </td>
                                 <td>
-                                    <input type="text" data-bind="value: row().custom_toc_icon" placeholder="Custom TOC icon path"/>
+                                    <input type="text" data-bind="value: row().custom_toc_icon, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Custom TOC icon path"/>
                                 </td>
                                 <td class="width-80">
                                     <span>
-                                        <input type="text" data-bind="value: row().vertical_file_location" placeholder="Vertical layout path" />
+                                        <input type="text" data-bind="value: row().vertical_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout path" />
                                     </span>
                                     <span>
-                                        <input type="text" data-bind="value: row().horizontal_file_location" placeholder="Horizontal layout path"/>
+                                        <input type="text" data-bind="value: row().horizontal_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout path"/>
                                     </span>
                                 </td>
                                 <td class="width-80">
                                     <span>
-                                        <input type="text" data-bind="value: row().vertical_file_layout_name" placeholder="Vertical layout name" />
+                                        <input type="text" data-bind="value: row().vertical_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout name" />
                                     </span>
                                     <span>
-                                        <input type="text" data-bind="value: row().horizontal_file_layout_name" placeholder="Horizontal layout name" />
+                                        <input type="text" data-bind="value: row().horizontal_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout name" />
                                     </span>
                                 </td>
                                 <td>
-                                    <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-always" data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
-                                    <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-portrait" data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
-                                    <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-landscape" data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
-                                    <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-never" data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Off</label>
                                 </td>
                                 <td>
-                                    <input type="checkbox" data-bind="checked: row().flattened_stack, attr: {id: 'flattened_stack_' + $index()}" />
+                                    <input type="checkbox" data-bind="checked: row().flattened_stack, attr: {disabled: $parent.structure.updateOnly(), id: 'flattened_stack_' + $index()}" />
                                     <label class="checkbox-label" data-bind="attr: {for: 'flattened_stack_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>

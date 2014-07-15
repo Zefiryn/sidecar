@@ -40,13 +40,17 @@ function SidecarViewModel() {
 
     // Add new row to the table
     self.addNewRow = function() {
-        //create new instance of sidecarStructure to get default fileRow values
-        var rowFields = new sidecarStructure();
-        self.rowsCollection.push(new SidecarRow(rowFields.fields));
+        if (self.structure.updateOnly() === false) {
+            //create new instance of sidecarStructure to get default fileRow values
+            var rowFields = new sidecarStructure();
+            self.rowsCollection.push(new SidecarRow(rowFields.fields));
+        }
     };
 
     self.removeRow = function(row) {
-        self.rowsCollection.remove(row);
+        if (self.structure.updateOnly() === false) {
+            self.rowsCollection.remove(row);
+        }
     };
 
     // Generate xml file
