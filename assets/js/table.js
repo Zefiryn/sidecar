@@ -71,6 +71,8 @@ function SidecarViewModel() {
     //read xmlfile provided to file input field
     self.readXmlFile = function(obj, evt) {
         self.reader.readXmlFile(obj, evt, self.importSidecarData);
+        //reset input selection
+        $('#importfileform')[0].reset();
     };
 
     /**
@@ -86,20 +88,21 @@ function SidecarViewModel() {
     self.showExportBox = function() {
         $('#export-options').show();
     },
-            self.hideExportBox = function() {
-                $('#export-options').hide();
-            },
-            /**
-             * Trigger downloading generated xml as file
-             */
-            self.exportXml = function() {
-                self.hideExportBox();
-                
-                //generate again as metadata checkbox might have been changed
-                self.generateSidecar();
-                var sidecarFile = new Blob([self.generatedXML()], {type: "text/xml;charset=utf-8"});
-                saveAs(sidecarFile, "sidecar.xml");
-            };
+            
+    self.hideExportBox = function() {
+        $('#export-options').hide();
+    },
+    /**
+     * Trigger downloading generated xml as file
+     */
+    self.exportXml = function() {
+        self.hideExportBox();
+
+        //generate again as metadata checkbox might have been changed
+        self.generateSidecar();
+        var sidecarFile = new Blob([self.generatedXML()], {type: "text/xml;charset=utf-8"});
+        saveAs(sidecarFile, "sidecar.xml");
+    };
 
     //initial table with one empty row
     self.rowsCollection = ko.observableArray([

@@ -29,7 +29,9 @@
                     <li>
                         <span>Import</span>
                         <button class="round btn-import" data-bind="event: {click: showImportBox}"></button>
-                        <input type="file" id="sidecar_file" name="sidecar_file" data-bind="event: {change: readXmlFile}" class="hidden" />
+                        <form id="importfileform">
+                            <input type="file" id="sidecar_file" name="sidecar_file" data-bind="event: {change: readXmlFile}" class="hidden" />
+                        </form>
                     </li>
                     <li>
                         <span>Export</span>
