@@ -92,30 +92,31 @@ To edit this sidecar, import it into the generator again.\r\n\
      * Convert fields object to structure ready to be xmlized
      */
     self.prepareJsonObject = function(item) {
+        var row = item.row();
         var object = {
             contentSource: {
-                tocPreview: item.row().toc_image(),
-                articleName: "<![CDATA[" + item.row().article_name() + "]]>",
-                sourceFormat: item.row().source_format(),
-                customTocIcon: "<![CDATA[" + item.row().custom_toc_icon() + "]]>",
+                tocPreview: row.toc_image() ? row.toc_image() : null,
+                articleName: "<![CDATA[" + row.article_name() + "]]>",
+                sourceFormat: row.source_format(),
+                customTocIcon: row.custom_toc_icon() ? "<![CDATA[" + row.custom_toc_icon() + "]]>" : null,
                 sourceFile_v: {
-                    location: "<![CDATA[" + item.row().vertical_file_location() + "]]>",
-                    layoutName: "<![CDATA[" + item.row().vertical_file_layout_name() + "]]>"
+                    location: row.vertical_file_location() ? "<![CDATA[" + row.vertical_file_location() + "]]>" : null,
+                    layoutName: row.vertical_file_layout_name() ? "<![CDATA[" + row.vertical_file_layout_name() + "]]>" : null
                 },
                 sourceFile_h: {
-                    location: "<![CDATA[" + item.row().horizontal_file_location() + "]]>",
-                    layoutName: "<![CDATA[" + item.row().horizontal_file_layout_name() + "]]>"
+                    location: row.horizontal_file_location() ? "<![CDATA[" + row.horizontal_file_location() + "]]>" : null,
+                    layoutName: row.horizontal_file_layout_name() ? "<![CDATA[" + row.horizontal_file_layout_name() + "]]>" : null
                 }
             },
-            articleTitle: "<![CDATA[" + item.row().article_title() + "]]>",
-            author: "<![CDATA[" + item.row().author() + "]]>",
-            kicker: "<![CDATA[" + item.row().kicker() + "]]>",
-            description: "<![CDATA[" + item.row().description() + "]]>",
-            tags: "<![CDATA[" + item.row().tags() + "]]>",
-            isAd: item.row().ads(),
-            smoothScrolling: item.row().smooth_scrolling(),
-            isFlattenedStack: item.row().flattened_stack(),
-            articleAccess: item.row().article_access()
+            articleTitle: row.article_title() ? "<![CDATA[" + row.article_title() + "]]>" : null,
+            author: row.author() ? "<![CDATA[" + row.author() + "]]>" : null,
+            kicker: row.kicker() ? "<![CDATA[" + row.kicker() + "]]>" : null,
+            description: row.description() ? "<![CDATA[" + row.description() + "]]>" : null,
+            tags: row.tags() ? "<![CDATA[" + row.tags() + "]]>" : null,
+            isAd: row.ads(),
+            smoothScrolling: row.smooth_scrolling(),
+            isFlattenedStack: row.flattened_stack(),
+            articleAccess: row.article_access()
         };
 
         return object;
