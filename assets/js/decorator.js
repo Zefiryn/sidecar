@@ -9,17 +9,29 @@ function Decorator() {
   /**
    * Add line numbers and colorize xml code output
    */
-  self.outputCodeDecoration = function(codeText) {
-      $('.output .line-number, .output .cl').remove();
-      $('pre code').before('<span class="line-number"></span>');
-      $('pre code').after('<span class="cl"></span>');
-      var num = codeText.split(/\n/).length;
-      for (var j = 0; j < num; j++) {
-          var line_num = $('span.line-number')[0];
-          line_num.innerHTML += '<span>' + (j + 1) + '</span>';
+  self.outputCodeDecoration = function() {
+      //self.addCodeLines($('.output'));
+      self.colorize($('.output code')[0]);
+  };
+  
+  self.addCodeLines = function(element) {
+      element.find('.line-number, .cl').remove();
+      var codeElement = element.find('pre code');
+      codeElement.before('<span class="line-number"></span>');
+      codeElement.after('<span class="cl"></span>');
+      var rows = codeElement.text().split(/\n/).length;
+                  
+      var line_num = $('span.line-number')[0];
+      var lines = '';
+      for (var j = 0; j < rows; j++) {          
+          lines += '<span>' + (j + 1) + '</span>';
       }
+      line_num.innerHTML = lines;
+  };
+  
+  self.colorize = function(elem) {
       if (hljs !== undefined) {
-          hljs.highlightBlock($('pre code')[0]);
+          hljs.highlightBlock(elem);
       }
   };
   

@@ -83,7 +83,9 @@
                             </tr>
                             <tr  data-bind="attr: {id: 'metadata-art-' + $index()}">
                                 <td class="transparent">
-                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}, style: { backgroundImage: row().toc_image() != '' ? 'url(' + row().toc_image() + ')' : 'url(\'assets/images/icons.png\')'}"></span>
+                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
+                                        <img data-bind="attr: {src: row().toc_image()}" width="40px" height="40px;"/>
+                                    </span>
                                 </td>
                                 <td class="width-60">
                                     <textarea  maxlength="60" data-bind="value: row().article_title" placeholder="Article title"></textarea>
@@ -164,7 +166,9 @@
                             </tr>
                             <tr data-bind="attr: {id: 'content-source-art-' + $index()}">
                                 <td class="transparent">
-                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}, style: { backgroundImage: hasTocIcon ? 'url(' + row().toc_image() + ')' : 'url(\'assets/images/icons.png\')'}"></span>
+                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
+                                        <img data-bind="attr: {src: row().toc_image()}" width="40px" height="40px;"/>
+                                    </span>
                                 </td>
                                 <td>
                                     <textarea data-bind="value: row().article_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Article name"></textarea>

@@ -56,7 +56,7 @@ function SidecarViewModel() {
     // Generate xml file
     self.generateSidecar = function() {        
         self.generatedXML(self.structure.generateXml(self.rowsCollection()));
-        self.decorator.outputCodeDecoration(self.generatedXML());
+        self.decorator.outputCodeDecoration();
     };
 
     /**

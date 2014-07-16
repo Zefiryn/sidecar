@@ -273,12 +273,19 @@ section .tab-content .sidecar-table tbody .icon {
   width: 40px;
   height: 40px;
   display: block;
+  background-color: #ececec;
 }
 section .tab-content .sidecar-table tbody .icon.icon-toc {
   background-position: -158px -57px;
 }
+section .tab-content .sidecar-table tbody .icon.icon-toc img {
+  display: none;
+}
 section .tab-content .sidecar-table tbody .icon.icon-toc.toc {
-  background-position: 0px 0px;
+  background-image: none;
+}
+section .tab-content .sidecar-table tbody .icon.icon-toc.toc img {
+  display: block;
 }
 section .tab-content .output pre {
   width: 80%;
@@ -288,10 +295,15 @@ section .tab-content .output pre {
   line-height: 22px;
   font-size: 14px;
   font-family: source-code-pro, sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
 }
 section .tab-content .output pre code {
   display: block;
   font-family: source-code-pro, sans-serif;
+  word-wrap: break-word;
 }
 section .tab-content .output pre .line-number {
   float: left;

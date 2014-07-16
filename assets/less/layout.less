@@ -249,10 +249,14 @@ section {
                     width: 40px;
                     height: 40px;
                     display: block;
+                    background-color: #ececec;
                     &.icon-toc {
                         background-position: -158px -57px;
+                        
+                        img {display: none;}
                         &.toc {
-                            background-position: 0px 0px;
+                            background-image: none;
+                            img {display: block;}
                         }
                     }
                     
@@ -268,10 +272,13 @@ section {
             line-height: 22px;
             font-size: 14px;
             font-family: @code;
+            .box-sizing(border-box);
+            padding: 10px;
             
             code {
                 display: block;
                 font-family: @code;
+                word-wrap: break-word;
             }
             .line-number {
                 float: left;
