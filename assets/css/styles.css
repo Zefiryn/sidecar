@@ -232,6 +232,14 @@ section .tab-content .sidecar-table ol li .sort-handle {
   height: 40px;
   cursor: move;
 }
+section .tab-content .sidecar-table ol li .upper {
+  margin-bottom: 3px;
+  display: block;
+}
+section .tab-content .sidecar-table ol li .lower {
+  margin-top: 3px;
+  display: block;
+}
 section .tab-content .sidecar-table ol li textarea,
 section .tab-content .sidecar-table ol li input[type="text"],
 section .tab-content .sidecar-table ol li select {
@@ -246,6 +254,7 @@ section .tab-content .sidecar-table ol li select {
   box-sizing: border-box;
   resize: none;
   font-size: 12px;
+  line-height: 20px;
 }
 section .tab-content .sidecar-table ol li input[type="checkbox"] {
   display: none;
