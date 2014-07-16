@@ -48,83 +48,80 @@
             <div class="tab-content">
                 <!-- METADATA -->
                 <div class="tab-pane active" data-bind="css: { active: sections()[0].isSelected() }">
-                    <table class="sidecar-table" id="metadata-table">
-                        <colgroup>
-                            <col width="40px" />
-                            <col width="180px" />
-                            <col width="120px" />
-                            <col width="120px" />
-                            <col width="410px" />
-                            <col width="100px" />
-                            <col width="45px"  />
-                            <col width="45px"  />
-                            <col />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>Icon</th>
-                                <th>Article title (60)</th>
-                                <th>Author (40)</th>
-                                <th>Kicker (40)</th>
-                                <th>Description (120)</th>
-                                <th>Tags (40)</th>
-                                <th>Article access</th>
-                                <th>Ad</th>
-                                <th>Hide</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: rowsCollection">
-                            <tr>
-                                <td></td>
-                                <td colspan="9" class="transparent">
-                                    <span class="article_name" data-bind="text: row().article_name"></span>
-                                </td>
-                            </tr>
-                            <tr  data-bind="attr: {id: 'metadata-art-' + $index()}">
-                                <td class="transparent">
+                    <header>
+                        <ol>
+                            <li class="width-sortable">&nbsp;</li>
+                            <li class="width-icon">Icon</li>
+                            <li class="width-60">Article title (60)</li>
+                            <li class="width-40">Author (40)</li>
+                            <li class="width-40">Kicker (40)</li>
+                            <li class="width-120">Description (120)</li>
+                            <li class="width-40">Tags (40)</li>
+                            <li class="width-100">Article access</li>
+                            <li class="width-single-input">Ad</li>
+                            <li class="width-single-input">Hide</li>
+                            <li></li>
+                        </ol>
+                    </header>
+                    <div class="sidecar-table" id="metadata-table">                        
+                        <ol data-bind="foreach: rowsCollection">
+                            <li data-bind="attr: {id: 'metadata-art-' + $index()}">
+                                
+                                <span class="field-wrapper article_name" data-bind="text: row().article_name"></span>
+                                
+                                <span class="field-wrapper sort-handle"></span>
+                                
+                                <span class="field-wrapper">
                                     <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
                                         <img data-bind="attr: {src: row().toc_image()}" width="40px" height="40px;"/>
                                     </span>
-                                </td>
-                                <td class="width-60">
-                                    <textarea  maxlength="60" data-bind="value: row().article_title" placeholder="Article title"></textarea>
-                                </td>
-                                <td class="width-40">
-                                    <textarea  maxlength="40" data-bind="value: row().author" placeholder="Author"></textarea>
-                                </td>
-                                <td class="width-40">
-                                    <textarea  maxlength="40" data-bind="value: row().kicker" placeholder="Kicker"></textarea>
-                                </td>
-                                <td class="width-120">
+                                </span>
+                                
+                                <span class="field-wrapper width-60">
+                                    <textarea maxlength="60" data-bind="value: row().article_title" placeholder="Article title"></textarea>
+                                </span>
+                                
+                                <span class="field-wrapper width-40">
+                                    <textarea maxlength="40" data-bind="value: row().author" placeholder="Author"></textarea>
+                                </span>
+                                
+                                <span class="field-wrapper width-40">
+                                    <textarea maxlength="40" data-bind="value: row().kicker" placeholder="Kicker"></textarea>
+                                </span>
+                                
+                                <span class="field-wrapper width-120">
                                     <textarea maxlength="120" data-bind="value: row().description" placeholder="Description"></textarea>
-                                </td>
-                                <td class="width-40">
+                                </span>
+                                
+                                <span class="field-wrapper width-40">
                                     <textarea maxlength="40" data-bind="value: row().tags" placeholder="Tags"></textarea>
-                                </td>
-                                <td style="width: 100px;">
+                                </span>       
+                                <span class="field-wrapper width-100">
                                     <select data-bind="options: $root.accessOptions, optionsText: 'label', optionsValue: 'value', selectedOptions: row().article_access"></select>
-                                </td>
-                                <td style="width: 45px;">
+                                </span>
+                                
+                                <span class="field-wrapper width-single-input">
                                     <input type="checkbox" data-bind="checked: row().ads, attr: {id: 'ads_' + $index()}"  />
                                     <label class="checkbox-label" data-bind="attr: {for: 'ads_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
                                     </label>
-                                </td>
-                                <td style="width: 45px;">
+                                </span>
+                                
+                                <span class="field-wrapper width-single-input">
                                     <input type="checkbox" data-bind="checked: row().hide, attr: {id: 'hide_' + $index()}" />
                                     <label class="checkbox-label" data-bind="attr: {for: 'hide_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
                                     </label>
-                                </td>                                    
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper">
                                     <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </span>
+                            </li>
+                        </ol>
+                    </div>
                     <div class="buttons-set">        
                         <button class="square btn-add" data-bind="click: addNewRow">Add new row</button>
                     </div>
@@ -132,70 +129,64 @@
 
                 <!-- CONTENT SOURCE -->
                 <div class="tab-pane" data-bind="css: { active: sections()[1].isSelected() }">
-                    <table class="sidecar-table"  id="content-source-table">
-                        <colgroup>
-                            <col width="40px" />
-                            <col />
-                            <col />
-                            <col />
-                            <col width="240px" />
-                            <col width="240px" />
-                            <col width="165px"/>
-                            <col />
-                            <col />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>Icon</th>
-                                <th>Article name</th>
-                                <th>Source format</th>
-                                <th>Custom TOC icon path</th>
-                                <th>Vetical/Horizontal layout path</th>
-                                <th>Vetical/Horizontal layout name</th>
-                                <th>Smooth scrolling</th>
-                                <th>H-swipe</th>                                
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: rowsCollection">
-                            <tr>
-                                <td></td>
-                                <td colspan="9" class="transparent">
-                                    <span class="article_name" data-bind="text: row().article_name"></span>
-                                </td>
-                            </tr>
-                            <tr data-bind="attr: {id: 'content-source-art-' + $index()}">
-                                <td class="transparent">
+                    <header>
+                        <ol>
+                            <li class="width-sortable">&nbsp;</li>
+                            <li class="width-icon">Icon</li>
+                            <li class="width-60">Article name</li>
+                            <li class="width-40">Source format</li>
+                            <li class="width-50">Custom TOC icon path</li>
+                            <li class="width-80">Vetical/Horizontal layout path</li>
+                            <li class="width-80">Vetical/Horizontal layout name</li>
+                            <li class="width-scrolling">Smooth scrolling</li>
+                            <li>H-swipe</li>
+                            <li></li>
+                        </ol>
+                    </header>
+                    <div class="sidecar-table"  id="content-source-table">                        
+                        <ol data-bind="foreach: rowsCollection">
+                            <li>
+                                <span class="field-wrapper article_name" data-bind="text: row().article_name"></span>
+                                
+                                <span class="field-wrapper sort-handle"></span>
+                                
+                                <span class="field-wrapper">
                                     <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
                                         <img data-bind="attr: {src: row().toc_image()}" width="40px" height="40px;"/>
                                     </span>
-                                </td>
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper width-60">
                                     <textarea data-bind="value: row().article_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Article name"></textarea>
-                                </td>
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper width-40">
                                     <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format, attr: {disabled: $parent.structure.updateOnly()}"></select>
-                                </td>
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper width-50">
                                     <input type="text" data-bind="value: row().custom_toc_icon, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Custom TOC icon path"/>
-                                </td>
-                                <td class="width-80">
+                                </span>
+                                
+                                <span class="field-wrapper width-80">
                                     <span>
                                         <input type="text" data-bind="value: row().vertical_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout path" />
                                     </span>
                                     <span>
                                         <input type="text" data-bind="value: row().horizontal_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout path"/>
                                     </span>
-                                </td>
-                                <td class="width-80">
+                                </span>
+                                
+                                <span class="field-wrapper width-80">
                                     <span>
                                         <input type="text" data-bind="value: row().vertical_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout name" />
                                     </span>
                                     <span>
                                         <input type="text" data-bind="value: row().horizontal_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout name" />
                                     </span>
-                                </td>
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper width-scrolling">
                                     <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-always" data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
                                     <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
@@ -204,27 +195,34 @@
                                     <label class="scroll-landscape" data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
                                     <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-never" data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Off</label>
-                                </td>
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper">
                                     <input type="checkbox" data-bind="checked: row().flattened_stack, attr: {disabled: $parent.structure.updateOnly(), id: 'flattened_stack_' + $index()}" />
                                     <label class="checkbox-label" data-bind="attr: {for: 'flattened_stack_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
                                     </label>
-                                </td>
-                                <td>
+                                </span>
+                                
+                                <span class="field-wrapper">
                                     <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </span>
+                            </li>
+                        </ol>
+                    </div>
                     <div class="buttons-set">        
                         <button class="square btn-add" data-bind="click: addNewRow">Add new row</button>
                     </div>
                 </div>
 
                 <!-- XML SOURCE -->
-                <div class="tab-pane" data-bind="css: { active: sections()[2].isSelected() }">                    
+                <div class="tab-pane" data-bind="css: { active: sections()[2].isSelected() }">
+                    <header>
+                        <ol>
+                            <li class="header-output">Sidecar.XML code</li>
+                        </ol>
+                    </header>
                     <div class="output">
                         <pre><code data-bind="text: generatedXML()"></code></pre>
                     </div>
@@ -248,7 +246,7 @@
         
         <footer></footer>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>        
         <script type="text/javascript" src="assets/js/highlight.pack.js"></script>
         <script type="text/javascript" src="assets/js/xml2json.min.js"></script>
         <script type="text/javascript" src="assets/js/xmlformatter.js"></script>

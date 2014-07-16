@@ -14,75 +14,75 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-header {
+body > header {
   background: #5264AE;
   width: 100%;
   overflow: visible;
   padding: 25px 10px 0px 10px;
-  margin: 0px auto;
+  margin: 0px auto 30px auto;
   position: fixed;
   z-index: 50;
 }
-header img {
+body > header img {
   float: left;
   margin: 0px 30px;
 }
-header h1 {
+body > header h1 {
   font-family: open-sans, sans-serif;
   font-size: 30px;
   color: #fff;
   font-weight: lighter;
   margin: 0px;
 }
-header nav {
+body > header nav {
   overflow: visible;
   margin-top: 35px;
   position: relative;
 }
-header nav ul {
+body > header nav ul {
   list-style-type: none;
   overflow: hidden;
   margin: 0px;
 }
-header nav ul.nav-tabs {
+body > header nav ul.nav-tabs {
   overflow: hidden;
 }
-header nav ul.nav-tabs li {
+body > header nav ul.nav-tabs li {
   font-size: 15px;
   width: 150px;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
 }
-header nav ul.nav-tabs li.active {
+body > header nav ul.nav-tabs li.active {
   border-bottom: 1px solid #f00;
   background-color: transparent !important;
 }
-header nav ul.nav-tabs li.active a {
+body > header nav ul.nav-tabs li.active a {
   color: #fff;
 }
-header nav ul.nav-tabs li:hover {
+body > header nav ul.nav-tabs li:hover {
   background-color: #97A2CE;
 }
-header nav ul.nav-tabs li:hover a {
+body > header nav ul.nav-tabs li:hover a {
   color: #fff;
 }
-header nav ul.nav-tabs li a {
+body > header nav ul.nav-tabs li a {
   color: #BAC1DF;
   text-decoration: none;
   padding: 8px 0px;
   display: block;
 }
-header nav ul.buttons {
+body > header nav ul.buttons {
   position: absolute;
   right: 30px;
   top: -15px;
   z-index: 100;
 }
-header nav ul.buttons li {
+body > header nav ul.buttons li {
   margin-right: 15px;
 }
-header nav ul.buttons li span {
+body > header nav ul.buttons li span {
   display: block;
   font-size: 12px;
   text-align: center;
@@ -90,35 +90,35 @@ header nav ul.buttons li span {
   text-transform: uppercase;
   margin-bottom: 10px;
 }
-header nav ul li {
+body > header nav ul li {
   float: left;
 }
-header nav ul button {
+body > header nav ul button {
   width: 50px;
   height: 50px;
   border: 0px;
 }
-header nav ul button.round {
+body > header nav ul button.round {
   background-color: #BAC1DF;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
 }
-header nav ul button.round:hover {
+body > header nav ul button.round:hover {
   cursor: pointer;
   background-color: #97A2CE;
 }
-header nav ul button.round.btn-import {
+body > header nav ul button.round.btn-import {
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   background-position: -51px 4px;
 }
-header nav ul button.round.btn-export {
+body > header nav ul button.round.btn-export {
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   background-position: 5px 5px;
 }
-header nav ul button.round.btn-help {
+body > header nav ul button.round.btn-help {
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   background-position: -107px 5px;
@@ -128,7 +128,7 @@ section {
   -moz-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding: 170px 10px 0px 10px;
+  padding: 138px 0px 0px 0px;
 }
 section .tab-content .tab-pane {
   display: none;
@@ -136,54 +136,109 @@ section .tab-content .tab-pane {
 section .tab-content .tab-pane.active {
   display: block;
 }
-section .tab-content .sidecar-table {
+section .tab-content .tab-pane header {
+  border-bottom: 1px solid #ececec;
+  position: fixed;
   width: 100%;
+  background: #fff;
+  padding: 40px 10px 0px 10px;
 }
-section .tab-content .sidecar-table thead th {
+section .tab-content .tab-pane header ol {
+  padding-left: 0px;
+  overflow: hidden;
+  margin: 0px 0px 5px 0px;
+}
+section .tab-content .tab-pane header ol li {
   font-size: 11px;
   line-height: 15px;
   color: #aaa;
   font-weight: normal;
   text-align: left;
   padding: 0px 4px;
-  border-bottom: 1px solid #ececec;
-}
-section .tab-content .sidecar-table tbody td {
-  vertical-align: top;
-}
-section .tab-content .sidecar-table tbody td.transparent {
-  background: none;
-}
-section .tab-content .sidecar-table tbody td.width-40 {
-  width: 120px;
-}
-section .tab-content .sidecar-table tbody td.width-60 {
-  width: 180px;
-}
-section .tab-content .sidecar-table tbody td.width-80 {
-  width: 240px;
-}
-section .tab-content .sidecar-table tbody td.width-120 {
-  width: 410px;
-}
-section .tab-content .sidecar-table tbody td span {
   display: block;
-  width: 100%;
-  margin-bottom: 5px;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-section .tab-content .sidecar-table tbody td .article_name {
+section .tab-content .tab-pane header ol li.header-output {
+  margin-left: 5%;
+}
+section .tab-content .tab-pane .width-sortable {
+  width: 15px;
+}
+section .tab-content .tab-pane .width-icon {
+  width: 44px;
+}
+section .tab-content .tab-pane .width-40 {
+  width: 9%;
+}
+section .tab-content .tab-pane .width-50 {
+  width: 12%;
+}
+section .tab-content .tab-pane .width-60 {
+  width: 15%;
+}
+section .tab-content .tab-pane .width-80 {
+  width: 18%;
+}
+section .tab-content .tab-pane .width-120 {
+  width: 30%;
+}
+section .tab-content .tab-pane .width-100 {
+  width: 7%;
+}
+section .tab-content .tab-pane .width-single-input {
+  width: 47px;
+}
+section .tab-content .tab-pane .width-scrolling {
+  width: 164px;
+}
+section .tab-content .sidecar-table {
+  width: 100%;
+  padding: 50px 10px 0px 10px;
+}
+section .tab-content .sidecar-table ol {
+  padding-left: 0px;
+}
+section .tab-content .sidecar-table ol li {
+  list-style-type: none;
+  overflow: hidden;
+}
+section .tab-content .sidecar-table ol li .field-wrapper {
+  display: block;
+  float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0px 2px;
+}
+section .tab-content .sidecar-table ol li .article_name {
   color: #5264AE;
   font-weight: 300;
   font-size: 16px;
   padding-top: 10px;
+  padding-left: 70px;
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
 }
-section .tab-content .sidecar-table tbody textarea,
-section .tab-content .sidecar-table tbody input[type="text"],
-section .tab-content .sidecar-table tbody select {
+section .tab-content .sidecar-table ol li .sort-handle {
+  background-image: url('../images/icons.png');
+  background-repeat: no-repeat;
+  background-position: -220px -56px;
+  width: 15px;
+  display: inline-block;
+  height: 40px;
+  cursor: move;
+}
+section .tab-content .sidecar-table ol li textarea,
+section .tab-content .sidecar-table ol li input[type="text"],
+section .tab-content .sidecar-table ol li select {
   height: 40px;
   overflow: hidden;
-  border: 0px;
   width: 100%;
+  border: 0px;
   background: #ECECEC;
   padding: 10px 10px 8px;
   -webkit-box-sizing: border-box;
@@ -192,12 +247,12 @@ section .tab-content .sidecar-table tbody select {
   resize: none;
   font-size: 12px;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"] {
+section .tab-content .sidecar-table ol li input[type="checkbox"] {
   display: none;
 }
-section .tab-content .sidecar-table tbody .checkbox-label {
+section .tab-content .sidecar-table ol li .checkbox-label {
   cursor: pointer;
-  display: block;
+  display: inline-block;
   background: #7F7F7F;
   color: #fff;
   font-weight: 600;
@@ -207,29 +262,29 @@ section .tab-content .sidecar-table tbody .checkbox-label {
   width: 40px;
   height: 40px;
 }
-section .tab-content .sidecar-table tbody .checkbox-label:hover {
+section .tab-content .sidecar-table ol li .checkbox-label:hover {
   background: #aaa !important;
 }
-section .tab-content .sidecar-table tbody .checkbox-label .checked {
+section .tab-content .sidecar-table ol li .checkbox-label .checked {
   display: none;
 }
-section .tab-content .sidecar-table tbody .checkbox-label .unchecked {
+section .tab-content .sidecar-table ol li .checkbox-label .unchecked {
   display: inline;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label {
+section .tab-content .sidecar-table ol li input[type="checkbox"]:checked + .checkbox-label {
   background: #97A2CE;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label .checked {
+section .tab-content .sidecar-table ol li input[type="checkbox"]:checked + .checkbox-label .checked {
   display: inline;
 }
-section .tab-content .sidecar-table tbody input[type="checkbox"]:checked + .checkbox-label .unchecked {
+section .tab-content .sidecar-table ol li input[type="checkbox"]:checked + .checkbox-label .unchecked {
   display: none;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] {
+section .tab-content .sidecar-table ol li input[type="radio"] {
   cursor: pointer;
   display: none;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label {
+section .tab-content .sidecar-table ol li input[type="radio"] + label {
   cursor: pointer;
   display: block;
   float: left;
@@ -240,19 +295,19 @@ section .tab-content .sidecar-table tbody input[type="radio"] + label {
   background-image: url('../images/icons.png');
   background-repeat: no-repeat;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label:hover {
+section .tab-content .sidecar-table ol li input[type="radio"] + label:hover {
   background-color: #aaa !important;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-always {
+section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-always {
   background-position: 0px -60px;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-portrait {
+section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-portrait {
   background-position: -55px -60px;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-landscape {
+section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-landscape {
   background-position: -110px -60px;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-never {
+section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-never {
   background-image: none;
   display: block;
   text-indent: 0px;
@@ -260,35 +315,38 @@ section .tab-content .sidecar-table tbody input[type="radio"] + label.scroll-nev
   text-align: center;
   line-height: 40px;
 }
-section .tab-content .sidecar-table tbody input[type="radio"] + label + br {
+section .tab-content .sidecar-table ol li input[type="radio"] + label + br {
   display: none;
 }
-section .tab-content .sidecar-table tbody input[type="radio"]:checked + label {
+section .tab-content .sidecar-table ol li input[type="radio"]:checked + label {
   background-color: #97A2CE;
 }
-section .tab-content .sidecar-table tbody .icon {
+section .tab-content .sidecar-table ol li .icon {
   background-image: url('../images/icons.png');
   background-position: 0px 0px;
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
-  display: block;
+  display: inline-block;
   background-color: #ececec;
 }
-section .tab-content .sidecar-table tbody .icon.icon-toc {
+section .tab-content .sidecar-table ol li .icon.icon-toc {
   background-position: -158px -57px;
 }
-section .tab-content .sidecar-table tbody .icon.icon-toc img {
+section .tab-content .sidecar-table ol li .icon.icon-toc img {
   display: none;
 }
-section .tab-content .sidecar-table tbody .icon.icon-toc.toc {
+section .tab-content .sidecar-table ol li .icon.icon-toc.toc {
   background-image: none;
 }
-section .tab-content .sidecar-table tbody .icon.icon-toc.toc img {
+section .tab-content .sidecar-table ol li .icon.icon-toc.toc img {
   display: block;
 }
+section .tab-content .output {
+  padding: 50px 10px 0px 10px;
+}
 section .tab-content .output pre {
-  width: 80%;
+  width: 90%;
   margin: 0px auto;
   background: #333333;
   color: #fff;
@@ -323,6 +381,7 @@ section .tab-content .output pre .cl {
 }
 section .tab-content .buttons-set {
   margin-top: 20px;
+  padding: 0px 10px;
 }
 section .tab-content button {
   width: 40px;

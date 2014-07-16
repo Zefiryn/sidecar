@@ -127,8 +127,9 @@ function SidecarViewModel() {
     //inialize to the first section
     self.selectedSection(self.sections()[0]);
 
-    //make sure to keep all inputs height in sync
+    //initialize other elements
     $('document').ready(function() {
+        //make sure to keep all inputs height in sync
         $('#metadata-table').on('keydown, keyup', 'textarea, input[type="text"]', self.decorator.inputHeightMatch);
     });
 }
