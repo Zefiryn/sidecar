@@ -142,6 +142,9 @@ section .tab-content .tab-pane header {
   width: 100%;
   background: #fff;
   padding: 40px 10px 0px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 section .tab-content .tab-pane header ol {
   padding-left: 0px;
@@ -197,6 +200,9 @@ section .tab-content .tab-pane .width-scrolling {
 section .tab-content .sidecar-table {
   width: 100%;
   padding: 50px 10px 0px 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 section .tab-content .sidecar-table ol {
   padding-left: 0px;
