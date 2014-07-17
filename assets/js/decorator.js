@@ -10,7 +10,7 @@ function Decorator() {
      * Add line numbers and colorize xml code output
      */
     self.outputCodeDecoration = function() {
-        //self.addCodeLines($('.output'));
+        self.addCodeLines($('.output'));
         self.colorize($('.output code')[0]);
     };
 

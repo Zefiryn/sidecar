@@ -45,7 +45,7 @@ To edit this sidecar, import it into the generator again.\r\n\
     /**
      * Generate xml code from table data
      */
-    self.generateXml = function(entries) {
+    self.generateXml = function(entries, withToc) {
         if (self.updateOnly() === true) {
             var sidecarObj = {sidecar: {metadataUpdateOnly: null, entry: []}};
         }
@@ -54,7 +54,7 @@ To edit this sidecar, import it into the generator again.\r\n\
         }
         var x2js = new X2JS({escapeMode: false});
         ko.utils.arrayForEach(entries, function(item, idx) {
-            var entry = self.prepareJsonObject(item);
+            var entry = self.prepareJsonObject(item, withToc);
             sidecarObj.sidecar.entry.push(entry);
         });
 
@@ -91,11 +91,15 @@ To edit this sidecar, import it into the generator again.\r\n\
     /**
      * Convert fields object to structure ready to be xmlized
      */
-    self.prepareJsonObject = function(item) {
+    self.prepareJsonObject = function(item, withToc) {
         var entry = item.entry();
+        var tocNodeContent = entry.toc_image().toString() ? entry.toc_image() : null;
+        if (withToc === false && tocNodeContent !== null) {
+            tocNodeContent = tocNodeContent.substr(0, tocNodeContent.indexOf(';'));
+        }
         var object = {
             contentSource: {
-                tocPreview: entry.toc_image().toString() ? entry.toc_image() : null,
+                tocPreview: tocNodeContent,
                 articleName: "<![CDATA[" + entry.article_name() + "]]>",
                 sourceFormat: entry.source_format(),
                 customTocIcon: entry.custom_toc_icon().toString() ? "<![CDATA[" + entry.custom_toc_icon() + "]]>" : null,

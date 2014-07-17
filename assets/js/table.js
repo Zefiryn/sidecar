@@ -36,7 +36,8 @@ function SidecarViewModel() {
      */
     self.sourceFormats = ko.observableArray(self.structure.sourceFormats);
     self.accessOptions = ko.observableArray(self.structure.accessOptions);
-    self.generatedXML = ko.observable("");
+    self.generatedOutputXML = ko.observable("");
+    self.generatedFullXML = ko.observable("");
 
     // Add new row to the table
     self.addNewRow = function() {
@@ -55,16 +56,21 @@ function SidecarViewModel() {
 
     // Generate xml file
     self.generateSidecar = function() {
-        self.generatedXML(self.structure.generateXml(self.entries()));
+        self.generatedOutputXML(self.structure.generateXml(self.entries(), false));
         self.decorator.outputCodeDecoration();
     };
+    
+    self.generateFullSidecar = function() {
+        self.generatedFullXML(self.structure.generateXml(self.entries(), true));
+    }
 
     /**
      * Import new collection from xml string
      */
     self.importSidecarData = function(xmlstr) {
         self.entries.removeAll();
-        self.generatedXML("");
+        self.generatedOutputXML("");
+        self.generatedFullXML("");
         self.entries(self.structure.importFromXml(xmlstr));        
         self.decorator.inputHeightMatchAll();
     };
@@ -107,8 +113,8 @@ function SidecarViewModel() {
         self.hideExportBox();
 
         //generate again as metadata checkbox might have been changed
-        self.generateSidecar();
-        var sidecarFile = new Blob([self.generatedXML()], {type: "text/xml;charset=utf-8"});
+        self.generateFullSidecar();
+        var sidecarFile = new Blob([self.generatedFullXML()], {type: "text/xml;charset=utf-8"});
         saveAs(sidecarFile, "sidecar.xml");
     };
 

@@ -357,6 +357,9 @@ section .tab-content .sidecar-table ol li .icon.icon-toc.toc {
 section .tab-content .sidecar-table ol li .icon.icon-toc.toc img {
   display: block;
 }
+section .tab-content .sidecar-table ol.ui-sortable-disabled li .sort-handle {
+  cursor: not-allowed;
+}
 section .tab-content .output {
   padding: 60px 10px 0px 10px;
 }
@@ -371,12 +374,11 @@ section .tab-content .output pre {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0px 10px;
 }
 section .tab-content .output pre code {
   display: block;
   font-family: source-code-pro, sans-serif;
-  word-wrap: break-word;
 }
 section .tab-content .output pre .line-number {
   float: left;

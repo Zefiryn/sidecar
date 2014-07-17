@@ -316,6 +316,14 @@ section {
 
                     }
                 }
+
+                &.ui-sortable-disabled {
+                    li {
+                        .sort-handle {
+                            cursor: not-allowed;
+                        }
+                    }
+                }
             }
         }
 
@@ -330,12 +338,11 @@ section {
                 font-size: 14px;
                 font-family: @code;
                 .box-sizing(border-box);
-                padding: 10px;
+                padding: 0px 10px;
 
                 code {
                     display: block;
                     font-family: @code;
-                    word-wrap: break-word;
                 }
                 .line-number {
                     float: left;
