@@ -93,7 +93,7 @@ To edit this sidecar, import it into the generator again.\r\n\
      */
     self.prepareJsonObject = function(item, withToc) {
         var entry = item.entry();
-        var tocNodeContent = entry.toc_image().toString() ? entry.toc_image() : null;
+        var tocNodeContent = entry.toc_image() != "" ? entry.toc_image() : null;
         if (withToc === false && tocNodeContent !== null) {
             tocNodeContent = tocNodeContent.substr(0, tocNodeContent.indexOf(';'));
         }
@@ -102,21 +102,21 @@ To edit this sidecar, import it into the generator again.\r\n\
                 tocPreview: tocNodeContent,
                 articleName: "<![CDATA[" + entry.article_name() + "]]>",
                 sourceFormat: entry.source_format(),
-                customTocIcon: entry.custom_toc_icon().toString() ? "<![CDATA[" + entry.custom_toc_icon() + "]]>" : null,
+                customTocIcon: entry.custom_toc_icon() != "" ? "<![CDATA[" + entry.custom_toc_icon() + "]]>" : null,
                 sourceFile_v: {
-                    location: entry.vertical_file_location().toString() ? "<![CDATA[" + entry.vertical_file_location() + "]]>" : null,
-                    layoutName: entry.vertical_file_layout_name().toString() ? "<![CDATA[" + entry.vertical_file_layout_name() + "]]>" : null
+                    location: entry.vertical_file_location() != "" ? "<![CDATA[" + entry.vertical_file_location() + "]]>" : null,
+                    layoutName: entry.vertical_file_layout_name() != "" ? "<![CDATA[" + entry.vertical_file_layout_name() + "]]>" : null
                 },
                 sourceFile_h: {
-                    location: entry.horizontal_file_location().toString() ? "<![CDATA[" + entry.horizontal_file_location() + "]]>" : null,
-                    layoutName: entry.horizontal_file_layout_name().toString() ? "<![CDATA[" + entry.horizontal_file_layout_name() + "]]>" : null
+                    location: entry.horizontal_file_location() != "" ? "<![CDATA[" + entry.horizontal_file_location() + "]]>" : null,
+                    layoutName: entry.horizontal_file_layout_name() != "" ? "<![CDATA[" + entry.horizontal_file_layout_name() + "]]>" : null
                 }
             },
-            articleTitle: entry.article_title().toString() ? "<![CDATA[" + entry.article_title() + "]]>" : null,
-            author: entry.author().toString() ? "<![CDATA[" + entry.author() + "]]>" : null,
-            kicker: entry.kicker().toString() ? "<![CDATA[" + entry.kicker() + "]]>" : null,
-            description: entry.description().toString() ? "<![CDATA[" + entry.description() + "]]>" : null,
-            tags: entry.tags().toString() ? "<![CDATA[" + entry.tags() + "]]>" : null,
+            articleTitle: entry.article_title() != "" ? "<![CDATA[" + entry.article_title() + "]]>" : null,
+            author: entry.author() != "" ? "<![CDATA[" + entry.author() + "]]>" : null,
+            kicker: entry.kicker() != "" ? "<![CDATA[" + entry.kicker() + "]]>" : null,
+            description: entry.description() != "" ? "<![CDATA[" + entry.description() + "]]>" : null,
+            tags: entry.tags() != "" ? "<![CDATA[" + entry.tags() + "]]>" : null,
             isAd: entry.ads(),
             smoothScrolling: entry.smooth_scrolling(),
             isFlattenedStack: entry.flattened_stack(),
