@@ -60,8 +60,13 @@ function Decorator() {
     };
     
     self.inputHeightMatchAll = function() {
+        var isSectionActive = $('#metadata-table').closest('.tab-pane').hasClass('active');
+        $('#metadata-table').closest('.tab-pane').addClass('active');
         $('#metadata-table input[type="text"], #metadata-table textarea').each(function(idx, item){
             self.inputHeightMatch({target: item});
         });
+        if (isSectionActive === false) {
+            $('#metadata-table').closest('.tab-pane').removeClass('active');
+        }
     };
 }
