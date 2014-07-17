@@ -317,10 +317,10 @@ section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-alw
   background-position: 0px -60px;
 }
 section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-portrait {
-  background-position: -55px -60px;
+  background-position: -110px -60px;
 }
 section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-landscape {
-  background-position: -110px -60px;
+  background-position: -55px -60px;
 }
 section .tab-content .sidecar-table ol li input[type="radio"] + label.scroll-never {
   background-image: none;
