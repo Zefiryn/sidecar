@@ -142,9 +142,9 @@ function SidecarViewModel() {
         //make sure to keep all inputs height in sync
         $('#metadata-table').on('keydown, keyup', 'textarea, input[type="text"]', self.decorator.inputHeightMatch);
         $('#metadata-table ol, #content-source-table ol').sortable({
-            placeholder: "placeholder"
+            placeholder: "placeholder",
+            handle: ".sort-handle"
         });
-        $('#metadata-table ol, #content-source-table ol').disableSelection();
     });
 }
 
