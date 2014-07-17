@@ -64,44 +64,43 @@
                         </ol>
                     </header>
                     <div class="sidecar-table" id="metadata-table">                        
-                        <ol data-bind="foreach: rowsCollection">
-                            <li data-bind="attr: {id: 'metadata-art-' + $index()}">
-                                
-                                <span class="field-wrapper article_name" data-bind="text: row().article_name"></span>
+                        <ol data-bind="sortable: {data: entries, afterMove: decorator.inputHeightMatch }">
+                            <li>                                
+                                <span class="field-wrapper article_name" data-bind="text: entry().article_name"></span>
                                 
                                 <span class="field-wrapper sort-handle"></span>
                                 
                                 <span class="field-wrapper">
                                     <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
-                                        <img data-bind="attr: {src: row().toc_image()}" width="40px" height="40px;"/>
+                                        <img data-bind="attr: {src: entry().toc_image()}" width="40px" height="40px;"/>
                                     </span>
                                 </span>
                                 
                                 <span class="field-wrapper width-60">
-                                    <textarea maxlength="60" data-bind="value: row().article_title" placeholder="Article title"></textarea>
+                                    <textarea maxlength="60" data-bind="value: entry().article_title" placeholder="Article title"></textarea>
                                 </span>
                                 
                                 <span class="field-wrapper width-40">
-                                    <textarea maxlength="40" data-bind="value: row().author" placeholder="Author"></textarea>
+                                    <textarea maxlength="40" data-bind="value: entry().author" placeholder="Author"></textarea>
                                 </span>
                                 
                                 <span class="field-wrapper width-40">
-                                    <textarea maxlength="40" data-bind="value: row().kicker" placeholder="Kicker"></textarea>
+                                    <textarea maxlength="40" data-bind="value: entry().kicker" placeholder="Kicker"></textarea>
                                 </span>
                                 
                                 <span class="field-wrapper width-120">
-                                    <textarea maxlength="120" data-bind="value: row().description" placeholder="Description"></textarea>
+                                    <textarea maxlength="120" data-bind="value: entry().description" placeholder="Description"></textarea>
                                 </span>
                                 
                                 <span class="field-wrapper width-40">
-                                    <textarea maxlength="40" data-bind="value: row().tags" placeholder="Tags"></textarea>
+                                    <textarea maxlength="40" data-bind="value: entry().tags" placeholder="Tags"></textarea>
                                 </span>       
                                 <span class="field-wrapper width-100">
-                                    <select data-bind="options: $root.accessOptions, optionsText: 'label', optionsValue: 'value', selectedOptions: row().article_access"></select>
+                                    <select data-bind="options: $root.accessOptions, optionsText: 'label', optionsValue: 'value', selectedOptions: entry().article_access"></select>
                                 </span>
                                 
                                 <span class="field-wrapper width-single-input">
-                                    <input type="checkbox" data-bind="checked: row().ads, attr: {id: 'ads_' + $index()}"  />
+                                    <input type="checkbox" data-bind="checked: entry().ads, attr: {id: 'ads_' + $index()}"  />
                                     <label class="checkbox-label" data-bind="attr: {for: 'ads_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
@@ -109,7 +108,7 @@
                                 </span>
                                 
                                 <span class="field-wrapper width-single-input">
-                                    <input type="checkbox" data-bind="checked: row().hide, attr: {id: 'hide_' + $index()}" />
+                                    <input type="checkbox" data-bind="checked: entry().hide, attr: {id: 'hide_' + $index()}" />
                                     <label class="checkbox-label" data-bind="attr: {for: 'hide_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
@@ -144,61 +143,61 @@
                         </ol>
                     </header>
                     <div class="sidecar-table"  id="content-source-table">                        
-                        <ol data-bind="foreach: rowsCollection">
+                        <ol data-bind="sortable: entries">
                             <li>
-                                <span class="field-wrapper article_name" data-bind="text: row().article_name"></span>
+                                <span class="field-wrapper article_name" data-bind="text: entry().article_name"></span>
                                 
                                 <span class="field-wrapper sort-handle"></span>
                                 
                                 <span class="field-wrapper">
                                     <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
-                                        <img data-bind="attr: {src: row().toc_image()}" width="40px" height="40px;"/>
+                                        <img data-bind="attr: {src: entry().toc_image()}" width="40px" height="40px;"/>
                                     </span>
                                 </span>
                                 
                                 <span class="field-wrapper width-60">
-                                    <textarea data-bind="value: row().article_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Article name"></textarea>
+                                    <textarea data-bind="value: entry().article_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Article name"></textarea>
                                 </span>
                                 
                                 <span class="field-wrapper width-40">
-                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: row().source_format, attr: {disabled: $parent.structure.updateOnly()}"></select>
+                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: entry().source_format, attr: {disabled: $parent.structure.updateOnly()}"></select>
                                 </span>
                                 
                                 <span class="field-wrapper width-50">
-                                    <input type="text" data-bind="value: row().custom_toc_icon, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Custom TOC icon path"/>
+                                    <input type="text" data-bind="value: entry().custom_toc_icon, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Custom TOC icon path"/>
                                 </span>
                                 
                                 <span class="field-wrapper width-80">
                                     <span class="upper">
-                                        <input type="text" data-bind="value: row().vertical_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout path" />
+                                        <input type="text" data-bind="value: entry().vertical_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout path" />
                                     </span>
                                     <span class="lower">
-                                        <input type="text" data-bind="value: row().horizontal_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout path"/>
+                                        <input type="text" data-bind="value: entry().horizontal_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout path"/>
                                     </span>
                                 </span>
                                 
                                 <span class="field-wrapper width-80">
                                     <span class="upper">
-                                        <input type="text" data-bind="value: row().vertical_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout name" />
+                                        <input type="text" data-bind="value: entry().vertical_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout name" />
                                     </span>
                                     <span class="lower">
-                                        <input type="text" data-bind="value: row().horizontal_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout name" />
+                                        <input type="text" data-bind="value: entry().horizontal_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout name" />
                                     </span>
                                 </span>
                                 
                                 <span class="field-wrapper width-scrolling">
-                                    <input type="radio" value="always" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="always" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-always" data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
-                                    <input type="radio" value="portrait" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="portrait" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-portrait" data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
-                                    <input type="radio" value="landscape" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="landscape" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-landscape" data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
-                                    <input type="radio" value="never" data-bind="checked: row().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="never" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-never" data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Off</label>
                                 </span>
                                 
                                 <span class="field-wrapper">
-                                    <input type="checkbox" data-bind="checked: row().flattened_stack, attr: {disabled: $parent.structure.updateOnly(), id: 'flattened_stack_' + $index()}" />
+                                    <input type="checkbox" data-bind="checked: entry().flattened_stack, attr: {disabled: $parent.structure.updateOnly(), id: 'flattened_stack_' + $index()}" />
                                     <label class="checkbox-label" data-bind="attr: {for: 'flattened_stack_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
@@ -246,12 +245,14 @@
         
         <footer></footer>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>        
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="assets/js/highlight.pack.js"></script>
         <script type="text/javascript" src="assets/js/xml2json.min.js"></script>
         <script type="text/javascript" src="assets/js/xmlformatter.js"></script>
         <script type='text/javascript' src='assets/js/FileSaver.js'></script>
         <script type='text/javascript' src='assets/js/knockout.js'></script>
+        <script type='text/javascript' src='assets/js/knockout-sortable.js'></script>
         <script type='text/javascript' src='assets/js/structure.js'></script>
         <script type='text/javascript' src='assets/js/filereader.js'></script>
         <script type='text/javascript' src='assets/js/decorator.js'></script>

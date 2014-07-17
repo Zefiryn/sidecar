@@ -45,7 +45,7 @@ To edit this sidecar, import it into the generator again.\r\n\
     /**
      * Generate xml code from table data
      */
-    self.generateXml = function(rowsCollection) {
+    self.generateXml = function(entries) {
         if (self.updateOnly() === true) {
             var sidecarObj = {sidecar: {metadataUpdateOnly: null, entry: []}};
         }
@@ -53,15 +53,15 @@ To edit this sidecar, import it into the generator again.\r\n\
             var sidecarObj = {sidecar: {entry: []}};
         }
         var x2js = new X2JS({escapeMode: false});
-        ko.utils.arrayForEach(rowsCollection, function(item, idx) {
-            var row = self.prepareJsonObject(item);
-            sidecarObj.sidecar.entry.push(row);
+        ko.utils.arrayForEach(entries, function(item, idx) {
+            var entry = self.prepareJsonObject(item);
+            sidecarObj.sidecar.entry.push(entry);
         });
 
         var sidecarXmlString = x2js.json2xml_str(sidecarObj);
         return $.trim(formatXml(self.outputHeaderString + "\r\n" + sidecarXmlString));
     };
-
+    
     /**
      * Read xml string and convert it into collection of elements
      */
@@ -80,7 +80,7 @@ To edit this sidecar, import it into the generator again.\r\n\
                 jsonObj.sidecar.entry = [jsonObj.sidecar.entry];
             }
             ko.utils.arrayForEach(jsonObj.sidecar.entry, function(item, idx) {
-                var rowData = self.importRowDataFromXml(item);
+                var rowData = self.importEntriesDataFromXml(item);
                 collection.push(new SidecarRow(rowData));
             });
         }
@@ -92,31 +92,31 @@ To edit this sidecar, import it into the generator again.\r\n\
      * Convert fields object to structure ready to be xmlized
      */
     self.prepareJsonObject = function(item) {
-        var row = item.row();
+        var entry = item.entry();
         var object = {
             contentSource: {
-                tocPreview: row.toc_image() ? row.toc_image() : null,
-                articleName: "<![CDATA[" + row.article_name() + "]]>",
-                sourceFormat: row.source_format(),
-                customTocIcon: row.custom_toc_icon() ? "<![CDATA[" + row.custom_toc_icon() + "]]>" : null,
+                tocPreview: entry.toc_image().toString() ? entry.toc_image() : null,
+                articleName: "<![CDATA[" + entry.article_name() + "]]>",
+                sourceFormat: entry.source_format(),
+                customTocIcon: entry.custom_toc_icon().toString() ? "<![CDATA[" + entry.custom_toc_icon() + "]]>" : null,
                 sourceFile_v: {
-                    location: row.vertical_file_location() ? "<![CDATA[" + row.vertical_file_location() + "]]>" : null,
-                    layoutName: row.vertical_file_layout_name() ? "<![CDATA[" + row.vertical_file_layout_name() + "]]>" : null
+                    location: entry.vertical_file_location().toString() ? "<![CDATA[" + entry.vertical_file_location() + "]]>" : null,
+                    layoutName: entry.vertical_file_layout_name().toString() ? "<![CDATA[" + entry.vertical_file_layout_name() + "]]>" : null
                 },
                 sourceFile_h: {
-                    location: row.horizontal_file_location() ? "<![CDATA[" + row.horizontal_file_location() + "]]>" : null,
-                    layoutName: row.horizontal_file_layout_name() ? "<![CDATA[" + row.horizontal_file_layout_name() + "]]>" : null
+                    location: entry.horizontal_file_location().toString() ? "<![CDATA[" + entry.horizontal_file_location() + "]]>" : null,
+                    layoutName: entry.horizontal_file_layout_name().toString() ? "<![CDATA[" + entry.horizontal_file_layout_name() + "]]>" : null
                 }
             },
-            articleTitle: row.article_title() ? "<![CDATA[" + row.article_title() + "]]>" : null,
-            author: row.author() ? "<![CDATA[" + row.author() + "]]>" : null,
-            kicker: row.kicker() ? "<![CDATA[" + row.kicker() + "]]>" : null,
-            description: row.description() ? "<![CDATA[" + row.description() + "]]>" : null,
-            tags: row.tags() ? "<![CDATA[" + row.tags() + "]]>" : null,
-            isAd: row.ads(),
-            smoothScrolling: row.smooth_scrolling(),
-            isFlattenedStack: row.flattened_stack(),
-            articleAccess: row.article_access()
+            articleTitle: entry.article_title().toString() ? "<![CDATA[" + entry.article_title() + "]]>" : null,
+            author: entry.author().toString() ? "<![CDATA[" + entry.author() + "]]>" : null,
+            kicker: entry.kicker().toString() ? "<![CDATA[" + entry.kicker() + "]]>" : null,
+            description: entry.description().toString() ? "<![CDATA[" + entry.description() + "]]>" : null,
+            tags: entry.tags().toString() ? "<![CDATA[" + entry.tags() + "]]>" : null,
+            isAd: entry.ads(),
+            smoothScrolling: entry.smooth_scrolling(),
+            isFlattenedStack: entry.flattened_stack(),
+            articleAccess: entry.article_access()
         };
 
         return object;
@@ -125,7 +125,7 @@ To edit this sidecar, import it into the generator again.\r\n\
     /**
      * Convert xml json object to flat fields object
      */
-    self.importRowDataFromXml = function(item) {
+    self.importEntriesDataFromXml = function(item) {
         var contentSource = item.contentSource;
         var sourceFile = {v: contentSource.sourceFile_v !== undefined ? contentSource.sourceFile_v : {},
             h: contentSource.sourceFile_h !== undefined ? contentSource.sourceFile_h : {}};

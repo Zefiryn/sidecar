@@ -1,9 +1,9 @@
 // Class that represents a row in the sidecar xml file
-function SidecarRow(row) {
+function SidecarRow(entry) {
     var self = this;
-    self.row = ko.observable(row);
+    self.entry = ko.observable(entry);
     self.hasTocIcon = ko.computed(function() {
-        return this.row().toc_image() != "";
+        return this.entry().toc_image() != "";
     }, this);
 }
 
@@ -43,19 +43,19 @@ function SidecarViewModel() {
         if (self.structure.updateOnly() === false) {
             //create new instance of sidecarStructure to get default fileRow values
             var rowFields = new sidecarStructure();
-            self.rowsCollection.push(new SidecarRow(rowFields.fields));
+            self.entries.push(new SidecarRow(rowFields.fields));
         }
     };
 
     self.removeRow = function(row) {
         if (self.structure.updateOnly() === false) {
-            self.rowsCollection.remove(row);
+            self.entries.remove(row);
         }
     };
 
     // Generate xml file
-    self.generateSidecar = function() {        
-        self.generatedXML(self.structure.generateXml(self.rowsCollection()));
+    self.generateSidecar = function() {
+        self.generatedXML(self.structure.generateXml(self.entries()));
         self.decorator.outputCodeDecoration();
     };
 
@@ -63,14 +63,17 @@ function SidecarViewModel() {
      * Import new collection from xml string
      */
     self.importSidecarData = function(xmlstr) {
-        self.rowsCollection.removeAll();
+        self.entries.removeAll();
         self.generatedXML("");
-        self.rowsCollection(self.structure.importFromXml(xmlstr));
+        self.entries(self.structure.importFromXml(xmlstr));        
+        self.decorator.inputHeightMatchAll();
     };
-    
-    self.setUpdateOnlyFlag = function(object, event) {        
+
+    self.setUpdateOnlyFlag = function(object, event) {
         self.structure.updateOnly(event.target.checked);
-    }
+        var state = event.target.checked ? "disable" : "enable";
+        $('#metadata-table ol, #content-source-table ol').sortable(state);
+    };
 
     //read xmlfile provided to file input field
     self.readXmlFile = function(obj, evt) {
@@ -91,11 +94,12 @@ function SidecarViewModel() {
      */
     self.showExportBox = function() {
         $('#export-options').show();
-    },
-            
+    };
+    
     self.hideExportBox = function() {
         $('#export-options').hide();
-    },
+    };
+    
     /**
      * Trigger downloading generated xml as file
      */
@@ -109,7 +113,7 @@ function SidecarViewModel() {
     };
 
     //initial table with one empty row
-    self.rowsCollection = ko.observableArray([
+    self.entries = ko.observableArray([
         new SidecarRow(self.structure.fields)
     ]);
 
@@ -131,6 +135,10 @@ function SidecarViewModel() {
     $('document').ready(function() {
         //make sure to keep all inputs height in sync
         $('#metadata-table').on('keydown, keyup', 'textarea, input[type="text"]', self.decorator.inputHeightMatch);
+        $('#metadata-table ol, #content-source-table ol').sortable({
+            placeholder: "placeholder"
+        });
+        $('#metadata-table ol, #content-source-table ol').disableSelection();
     });
 }
 
