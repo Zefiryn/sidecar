@@ -84,7 +84,7 @@ function SidecarViewModel() {
     };
 
     self.setUpdateOnlyFlag = function(object, event) {
-        self.structure.exportUpdateOnly(event.target.checked);        
+        self.structure.exportUpdateOnly(event.target.checked);
     };
     
     self.toggleUpdateOnly = function() {

@@ -241,7 +241,7 @@
             <header>Export sidecar.xml</header>
             <p>If you want to use the sidecar.xml file to update your article metadata or change the order of articles, you can use the Folio Builder panel to import the sidecar.xml file.</p>
             <div class="metadata-only">
-                <input type="checkbox" name="metadata-only" id="metadata-only" data-bind="checked: structure.editUpdateOnly, event: {change: setUpdateOnlyFlag}, attr: {disabled: structure.editUpdateOnly}" />
+                <input type="checkbox" name="metadata-only" id="metadata-only" data-bind="checked: structure.editUpdateOnly(), event: {change: setUpdateOnlyFlag}, attr: {disabled: structure.editUpdateOnly}" />
                 <label for="metadata-only">Metadata update only</label>
                 <span class="hint">Check it if you wish to update metadata only in existing articles</span>
             </div>
