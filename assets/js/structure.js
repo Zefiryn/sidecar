@@ -77,9 +77,10 @@ To edit this sidecar, import it into the generator again.\r\n\
             collection.push(new SidecarRow(structure.fields));
         }
         else {            
-            self.exportUpdateOnly(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
-            self.editUpdateOnly(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
-            self.importIsLocked(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
+            var locked = jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly');
+            self.exportUpdateOnly(locked);
+            self.editUpdateOnly(locked);
+            self.importIsLocked(locked);
             self.lockInfoText('This file has been set in Update Metatada Only mode. You cannot add, delete and sort articles or edit Content Source section.');
             if (!(jsonObj.sidecar.entry instanceof Array)) {
                 //there is only one entry
