@@ -3,22 +3,27 @@ function SidecarRow(entry) {
     var self = this;
     self.entry = ko.observable(entry);
     self.hasTocIcon = ko.computed(function() {
-        return this.entry().toc_image() != "";
+        return this.entry().toc_image() !== "";
     }, this);
 }
 
 //Class that represents tab section
-function Section(name, selected, callback) {
+function Section(name, selected, callback, parentViewModel, preventEdit) {
     var self = this;
     this.name = name;
+    this.preventEdit = preventEdit;
     this.initCallback = callback;
+    this.parent = parentViewModel;
     this.isSelected = ko.computed(function() {
-        if (this === selected()) {
-            if (typeof self.initCallback == 'function') {
+        if (this === selected() && this.isBlocked() === false) {
+            if (typeof self.initCallback === 'function') {
                 self.initCallback();
             }
             return true;
         }
+    }, this);
+    this.isBlocked = ko.computed(function() {
+        return this.parent.structure.editUpdateOnly() && this.preventEdit;
     }, this);
 }
 
@@ -38,10 +43,12 @@ function SidecarViewModel() {
     self.accessOptions = ko.observableArray(self.structure.accessOptions);
     self.generatedOutputXML = ko.observable("");
     self.generatedFullXML = ko.observable("");
+    self.message = ko.observable(null);
+    self.messageType = ko.observable(null);
 
     // Add new row to the table
     self.addNewRow = function() {
-        if (self.structure.updateOnly() === false) {
+        if (self.structure.editUpdateOnly() === false) {
             //create new instance of sidecarStructure to get default fileRow values
             var rowFields = new sidecarStructure();
             self.entries.push(new SidecarRow(rowFields.fields));
@@ -49,7 +56,7 @@ function SidecarViewModel() {
     };
 
     self.removeRow = function(row) {
-        if (self.structure.updateOnly() === false) {
+        if (self.structure.editUpdateOnly() === false) {
             self.entries.remove(row);
         }
     };
@@ -62,7 +69,7 @@ function SidecarViewModel() {
     
     self.generateFullSidecar = function() {
         self.generatedFullXML(self.structure.generateXml(self.entries(), true));
-    }
+    };
 
     /**
      * Import new collection from xml string
@@ -73,11 +80,24 @@ function SidecarViewModel() {
         self.generatedFullXML("");
         self.entries(self.structure.importFromXml(xmlstr));        
         self.decorator.inputHeightMatchAll();
+        self.toggleSorting(self.structure.importIsLocked());
     };
 
     self.setUpdateOnlyFlag = function(object, event) {
-        self.structure.updateOnly(event.target.checked);
-        var state = event.target.checked ? "disable" : "enable";
+        self.structure.exportUpdateOnly(event.target.checked);        
+    };
+    
+    self.toggleUpdateOnly = function() {
+        if (self.structure.importIsLocked() === false) {
+            self.structure.editUpdateOnly(!self.structure.editUpdateOnly());
+            self.toggleSorting(event.target.checked);
+            self.setAvailableSection();
+            self.structure.lockInfoText('You are working in Update Metatada Only mode. To add, delete article or edit Content Source section please press unlock button.');
+        }
+    };
+    
+    self.toggleSorting = function(disable) {
+        var state = disable ? "disable" : "enable";
         $('#metadata-table ol, #content-source-table ol').sortable(state);
     };
 
@@ -129,13 +149,31 @@ function SidecarViewModel() {
     self.selectedSection = ko.observable();
 
     self.sections = ko.observableArray([
-        new Section('Metadata', self.selectedSection),
-        new Section('Content Source', self.selectedSection),
-        new Section('XML Code', self.selectedSection, self.generateSidecar)
+        new Section('Metadata', self.selectedSection, null, self, false),
+        new Section('Content Source', self.selectedSection, null, self, true),
+        new Section('XML Code', self.selectedSection, self.generateSidecar, self, true)
     ]);
 
     //inialize to the first section
     self.selectedSection(self.sections()[0]);
+    
+    self.selectSection = function(section, event) {
+        if (!section.isBlocked()) {
+            self.selectedSection(section);
+        }
+    };
+    
+    //select new section if is not blocked by metada update only mode
+    self.setAvailableSection = function() {
+        if (self.selectedSection().isBlocked()) {
+            ko.utils.arrayForEach(self.sections(), function(section) {
+                if (section.isBlocked() === false) {
+                    self.selectedSection(section);
+                    return;
+                }
+            });
+        }
+    };
 
     //initialize other elements
     $('document').ready(function() {

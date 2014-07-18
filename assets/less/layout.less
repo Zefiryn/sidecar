@@ -14,7 +14,7 @@ body > header {
     background: #5264AE;
     width: 100%;
     overflow: visible;
-    padding: 25px 10px 0px 10px;
+    padding: 25px 0px 0px 0px;
     margin: 0px auto 30px auto;
     position: fixed;
     z-index: 50;
@@ -39,7 +39,7 @@ body > header {
             overflow: hidden;
             margin: 0px;
 
-            &.nav-tabs {                
+            &.nav-tabs {
                 overflow: hidden;
                 li {
                     font-size: 15px;
@@ -54,11 +54,22 @@ body > header {
                         a {
                             color: #fff;
                         }
-                    }
+                    }                    
                     &:hover {
                         background-color: #97A2CE;
                         a {
                             color: #fff;
+                        }
+                    }
+                    &.blocked {
+                        &:hover {
+                            background: transparent;
+                            a {
+                                color: #BAC1DF;
+                            }                        
+                        }
+                        a {
+                            font-weight: 300;
                         }
                     }
 
@@ -67,6 +78,29 @@ body > header {
                         text-decoration: none;
                         padding: 8px 0px;
                         display: block;
+                    }
+                }
+            }
+            &.messages {
+                width: 100%;
+                padding: 0px;
+                &.hidden {
+                    display: none;
+                }
+                    
+                li {
+                    width: 100%;
+                    padding: 5px 0px 5px 40px;
+                    font-size: 14px;
+                    font-weight: normal;
+                    font-family: @sans;
+                    &.hidden {
+                        display: none;
+                    }
+                    &.lock {
+                        background: #97A2CE;
+                        padding: 8px 0px 8px 40px;
+                        color: #fff;
                     }
                 }
             }
@@ -102,7 +136,10 @@ body > header {
                     
                     &:hover {cursor: pointer; background-color: #97A2CE;}
 
-                    &.btn-import {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -51px 4px}
+                    &.btn-lock {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: 7px -115px;}
+                    &.btn-lock.locked {background-position: -51px -115px;}
+                    &.btn-lock.importLocked {background-color: #ececec !important;}
+                    &.btn-import {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -51px 4px;}
                     &.btn-export {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: 5px 5px;}
                     &.btn-help {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -107px 5px;}
                 }
@@ -129,7 +166,7 @@ section {
                 position: fixed;
                 width: 100%;
                 background: #fff;
-                padding: 40px 10px 0px 10px;
+                padding: 50px 10px 0px 10px;
                 .box-sizing(border-box);
 
                 ol {
@@ -169,7 +206,7 @@ section {
 
         .sidecar-table {
             width: 100%;
-            padding: 50px 0px 0px 0px;
+            padding: 60px 0px 0px 0px;
             .box-sizing(border-box);
 
             ol {
@@ -378,13 +415,31 @@ section {
             &.square {
                 background-color: #5264AE;
                 &.btn-add {
-                  background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -156px 0px;
-                  &:hover {background-color: #009245;}
+                    position: relative;
+                    background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -156px 0px;
+                    &:hover {background-color: #009245;}
+                    span {
+                        color: #5264AE;
+                        position: absolute;
+                        text-indent: 0px;
+                        margin-left: 30px;
+                        line-height: 40px;
+                        font-weight: bold;
+                        font-family: open-sans, sans-serif;
+                        font-size: 18px;
+                        top: 0px;
+                        width: 200px;
+                        text-align: left;
+                    }
                 }
                 &.btn-remove {
-                  background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -204px 0px;
-                  &:hover {background-color: #C1272D;}
+                    background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -204px 0px;
+                    &:hover {background-color: #C1272D;}
                 }
+            }
+            &.disabled {
+                background-color: #ECECEC !important;
+                span {color: #ECECEC !important;}
             }
         }
     }    
@@ -452,6 +507,9 @@ aside#export-options {
             content: "\2714";
             text-align: center;
             color: #000;
+        }
+        input[disabled="true"] + label:before {
+            color: #cecece !important;
         }
         
         .hint {

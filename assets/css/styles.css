@@ -18,7 +18,7 @@ body > header {
   background: #5264AE;
   width: 100%;
   overflow: visible;
-  padding: 25px 10px 0px 10px;
+  padding: 25px 0px 0px 0px;
   margin: 0px auto 30px auto;
   position: fixed;
   z-index: 50;
@@ -67,11 +67,42 @@ body > header nav ul.nav-tabs li:hover {
 body > header nav ul.nav-tabs li:hover a {
   color: #fff;
 }
+body > header nav ul.nav-tabs li.blocked:hover {
+  background: transparent;
+}
+body > header nav ul.nav-tabs li.blocked:hover a {
+  color: #BAC1DF;
+}
+body > header nav ul.nav-tabs li.blocked a {
+  font-weight: 300;
+}
 body > header nav ul.nav-tabs li a {
   color: #BAC1DF;
   text-decoration: none;
   padding: 8px 0px;
   display: block;
+}
+body > header nav ul.messages {
+  width: 100%;
+  padding: 0px;
+}
+body > header nav ul.messages.hidden {
+  display: none;
+}
+body > header nav ul.messages li {
+  width: 100%;
+  padding: 5px 0px 5px 40px;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: open-sans, sans-serif;
+}
+body > header nav ul.messages li.hidden {
+  display: none;
+}
+body > header nav ul.messages li.lock {
+  background: #97A2CE;
+  padding: 8px 0px 8px 40px;
+  color: #fff;
 }
 body > header nav ul.buttons {
   position: absolute;
@@ -108,6 +139,17 @@ body > header nav ul button.round:hover {
   cursor: pointer;
   background-color: #97A2CE;
 }
+body > header nav ul button.round.btn-lock {
+  background-image: url(../images/icons.png);
+  background-repeat: no-repeat;
+  background-position: 7px -115px;
+}
+body > header nav ul button.round.btn-lock.locked {
+  background-position: -51px -115px;
+}
+body > header nav ul button.round.btn-lock.importLocked {
+  background-color: #ececec !important;
+}
 body > header nav ul button.round.btn-import {
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
@@ -141,7 +183,7 @@ section .tab-content .tab-pane header {
   position: fixed;
   width: 100%;
   background: #fff;
-  padding: 40px 10px 0px 10px;
+  padding: 50px 10px 0px 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -199,7 +241,7 @@ section .tab-content .tab-pane .width-scrolling {
 }
 section .tab-content .sidecar-table {
   width: 100%;
-  padding: 50px 0px 0px 0px;
+  padding: 60px 0px 0px 0px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -413,12 +455,26 @@ section .tab-content button.square {
   background-color: #5264AE;
 }
 section .tab-content button.square.btn-add {
+  position: relative;
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   background-position: -156px 0px;
 }
 section .tab-content button.square.btn-add:hover {
   background-color: #009245;
+}
+section .tab-content button.square.btn-add span {
+  color: #5264AE;
+  position: absolute;
+  text-indent: 0px;
+  margin-left: 30px;
+  line-height: 40px;
+  font-weight: bold;
+  font-family: open-sans, sans-serif;
+  font-size: 18px;
+  top: 0px;
+  width: 200px;
+  text-align: left;
 }
 section .tab-content button.square.btn-remove {
   background-image: url(../images/icons.png);
@@ -427,6 +483,12 @@ section .tab-content button.square.btn-remove {
 }
 section .tab-content button.square.btn-remove:hover {
   background-color: #C1272D;
+}
+section .tab-content button.disabled {
+  background-color: #ECECEC !important;
+}
+section .tab-content button.disabled span {
+  color: #ECECEC !important;
 }
 aside#export-options {
   width: 40%;
@@ -491,6 +553,9 @@ aside#export-options .metadata-only input:checked + label:before {
   content: "\2714";
   text-align: center;
   color: #000;
+}
+aside#export-options .metadata-only input[disabled="true"] + label:before {
+  color: #cecece !important;
 }
 aside#export-options .metadata-only .hint {
   display: block;

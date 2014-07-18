@@ -19,13 +19,21 @@
             <h1>sidecar.xml generator for Adobe DPS</h1>
             <nav>
                 <ul class="nav nav-tabs" data-bind="foreach: sections">
-                    <li data-bind="css: { active: isSelected }">
-                        <a href="#" data-bind="click: $parent.selectedSection">
+                    <li data-bind="css: { active: isSelected, blocked: isBlocked }">
+                        <a href="#" data-bind="click: $parent.selectSection">
                             <span data-bind="text: name"></span>
                         </a>
                     </li>
                 </ul>
+                <ul class="messages" data-bind="css: {hidden: (message() == null || message() === '') && structure.editUpdateOnly() === false}">
+                    <li data-bind="css: {hidden: !structure.editUpdateOnly}, text: structure.lockInfoText" class="lock"></li>
+                    <li data-bind="text: message, css: messageType, css: {hidden: messageType() === null || messageType() === ''}"></li>
+                </ul>
                 <ul class="buttons">
+                    <li>
+                        <span>LOCK</span>
+                        <button class="round btn-lock" data-bind="event: {click: toggleUpdateOnly}, css: {locked: structure.editUpdateOnly(), importLocked: structure.importIsLocked()}"></button>                       
+                    </li>
                     <li>
                         <span>Import</span>
                         <button class="round btn-import" data-bind="event: {click: showImportBox}"></button>
@@ -116,13 +124,13 @@
                                 </span>
                                 
                                 <span class="field-wrapper">
-                                    <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
+                                    <button class="square btn-remove" data-bind="click: $parent.removeRow, css: {disabled: $parent.structure.editUpdateOnly()}">Remove row</button>
                                 </span>
                             </li>
                         </ol>
                     </div>
                     <div class="buttons-set">        
-                        <button class="square btn-add" data-bind="click: addNewRow">Add new row</button>
+                        <button class="square btn-add" data-bind="click: addNewRow, css: {disabled: structure.editUpdateOnly()}"><span>Add article</span></button>
                     </div>
                 </div>
 
@@ -156,48 +164,48 @@
                                 </span>
                                 
                                 <span class="field-wrapper width-60">
-                                    <textarea data-bind="value: entry().article_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Article name"></textarea>
+                                    <textarea data-bind="value: entry().article_name, attr: {disabled: $parent.structure.editUpdateOnly()}" placeholder="Article name"></textarea>
                                 </span>
                                 
                                 <span class="field-wrapper width-40">
-                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: entry().source_format, attr: {disabled: $parent.structure.updateOnly()}"></select>
+                                    <select data-bind="options: $root.sourceFormats, optionsText: 'label', optionsValue: 'value', selectedOptions: entry().source_format, attr: {disabled: $parent.structure.editUpdateOnly()}"></select>
                                 </span>
                                 
                                 <span class="field-wrapper width-50">
-                                    <input type="text" data-bind="value: entry().custom_toc_icon, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Custom TOC icon path"/>
+                                    <input type="text" data-bind="value: entry().custom_toc_icon, attr: {disabled: $parent.structure.editUpdateOnly()}" placeholder="Custom TOC icon path"/>
                                 </span>
                                 
                                 <span class="field-wrapper width-80">
                                     <span class="upper">
-                                        <input type="text" data-bind="value: entry().vertical_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout path" />
+                                        <input type="text" data-bind="value: entry().vertical_file_location, attr: {disabled: $parent.structure.editUpdateOnly()}" placeholder="Vertical layout path" />
                                     </span>
                                     <span class="lower">
-                                        <input type="text" data-bind="value: entry().horizontal_file_location, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout path"/>
+                                        <input type="text" data-bind="value: entry().horizontal_file_location, attr: {disabled: $parent.structure.editUpdateOnly()}" placeholder="Horizontal layout path"/>
                                     </span>
                                 </span>
                                 
                                 <span class="field-wrapper width-80">
                                     <span class="upper">
-                                        <input type="text" data-bind="value: entry().vertical_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Vertical layout name" />
+                                        <input type="text" data-bind="value: entry().vertical_file_layout_name, attr: {disabled: $parent.structure.editUpdateOnly()}" placeholder="Vertical layout name" />
                                     </span>
                                     <span class="lower">
-                                        <input type="text" data-bind="value: entry().horizontal_file_layout_name, attr: {disabled: $parent.structure.updateOnly()}" placeholder="Horizontal layout name" />
+                                        <input type="text" data-bind="value: entry().horizontal_file_layout_name, attr: {disabled: $parent.structure.editUpdateOnly()}" placeholder="Horizontal layout name" />
                                     </span>
                                 </span>
                                 
                                 <span class="field-wrapper width-scrolling">
-                                    <input type="radio" value="always" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="always" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.editUpdateOnly(), id: 'smooth_scrolling_always_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-always" data-bind="attr: {for: 'smooth_scrolling_always_' + $index()}">Always</label><br />
-                                    <input type="radio" value="portrait" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="portrait" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.editUpdateOnly(), id: 'smooth_scrolling_portrait_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-portrait" data-bind="attr: {for: 'smooth_scrolling_portrait_' + $index()}">Portrait</label><br />
-                                    <input type="radio" value="landscape" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="landscape" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.editUpdateOnly(), id: 'smooth_scrolling_landscape_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-landscape" data-bind="attr: {for: 'smooth_scrolling_landscape_' + $index()}">Landscape</label><br />
-                                    <input type="radio" value="never" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.updateOnly(), id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
+                                    <input type="radio" value="never" data-bind="checked: entry().smooth_scrolling, attr: {disabled: $parent.structure.editUpdateOnly(), id: 'smooth_scrolling_never_' + $index(), name: 'smooth_scrolling['+ $index() +']'}" />
                                     <label class="scroll-never" data-bind="attr: {for: 'smooth_scrolling_never_' + $index()}">Off</label>
                                 </span>
                                 
                                 <span class="field-wrapper">
-                                    <input type="checkbox" data-bind="checked: entry().flattened_stack, attr: {disabled: $parent.structure.updateOnly(), id: 'flattened_stack_' + $index()}" />
+                                    <input type="checkbox" data-bind="checked: entry().flattened_stack, attr: {disabled: $parent.structure.editUpdateOnly(), id: 'flattened_stack_' + $index()}" />
                                     <label class="checkbox-label" data-bind="attr: {for: 'flattened_stack_' + $index()}">
                                       <span class="checked">On</span>
                                       <span class="unchecked">Off</span>
@@ -205,13 +213,13 @@
                                 </span>
                                 
                                 <span class="field-wrapper">
-                                    <button class="square btn-remove" data-bind="click: $parent.removeRow">Remove row</button>
+                                    <button class="square btn-remove" data-bind="click: $parent.removeRow, css: {disabled: $parent.structure.editUpdateOnly()">Remove row</button>
                                 </span>
                             </li>
                         </ol>
                     </div>
                     <div class="buttons-set">        
-                        <button class="square btn-add" data-bind="click: addNewRow">Add new row</button>
+                        <button class="square btn-add" data-bind="click: addNewRow, css: {disabled: structure.editUpdateOnly()}"><span>Add article</span></button>
                     </div>
                 </div>
 
@@ -233,7 +241,7 @@
             <header>Export sidecar.xml</header>
             <p>If you want to use the sidecar.xml file to update your article metadata or change the order of articles, you can use the Folio Builder panel to import the sidecar.xml file.</p>
             <div class="metadata-only">
-                <input type="checkbox" name="metadata-only" id="metadata-only" data-bind="checked: structure.updateOnly, event: {change: setUpdateOnlyFlag}" />
+                <input type="checkbox" name="metadata-only" id="metadata-only" data-bind="checked: structure.editUpdateOnly, event: {change: setUpdateOnlyFlag}, attr: {disabled: structure.editUpdateOnly}" />
                 <label for="metadata-only">Metadata update only</label>
                 <span class="hint">Check it if you wish to update metadata only in existing articles</span>
             </div>

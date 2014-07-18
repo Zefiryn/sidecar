@@ -33,7 +33,10 @@ function sidecarStructure() {
         article_access: ko.observable(['free'])
     };
     
-    self.updateOnly = ko.observable(false);
+    self.exportUpdateOnly = ko.observable(false);
+    self.editUpdateOnly = ko.observable(false);
+    self.importIsLocked = ko.observable(false);
+    self.lockInfoText = ko.observable("");
     
     self.outputHeaderString = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\r\n\
 <!--\r\n\
@@ -46,7 +49,7 @@ To edit this sidecar, import it into the generator again.\r\n\
      * Generate xml code from table data
      */
     self.generateXml = function(entries, withToc) {
-        if (self.updateOnly() === true) {
+        if (self.exportUpdateOnly() === true) {
             var sidecarObj = {sidecar: {metadataUpdateOnly: null, entry: []}};
         }
         else {
@@ -74,7 +77,10 @@ To edit this sidecar, import it into the generator again.\r\n\
             collection.push(new SidecarRow(structure.fields));
         }
         else {            
-            self.updateOnly(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
+            self.exportUpdateOnly(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
+            self.editUpdateOnly(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
+            self.importIsLocked(jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly'));
+            self.lockInfoText('This file has been set in Update Metatada Only mode. You cannot add, delete and sort articles or edit Content Source section.');
             if (!(jsonObj.sidecar.entry instanceof Array)) {
                 //there is only one entry
                 jsonObj.sidecar.entry = [jsonObj.sidecar.entry];
