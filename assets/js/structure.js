@@ -105,6 +105,9 @@ To edit this sidecar, import it into the generator again.\r\n\
         if (withToc === false && tocNodeContent !== null) {
             tocNodeContent = tocNodeContent.substr(0, tocNodeContent.indexOf(';'));
         }
+        else if (tocNodeContent !== null) {
+            tocNodeContent = tocNodeContent.substr(tocNodeContent.indexOf(';')+8);
+        }
         var object = {
             contentSource: {
                 tocPreview: tocNodeContent,
@@ -144,7 +147,8 @@ To edit this sidecar, import it into the generator again.\r\n\
             h: contentSource.sourceFile_h !== undefined ? contentSource.sourceFile_h : {}};
         var tocpreview = '';
         if (contentSource.tocPreview !== undefined && contentSource.tocPreview !== "") {
-            tocpreview =  "data:image/jpeg;base64," + contentSource.tocPreview;
+            tocpreview =  contentSource.tocPreview.indexOf('data:image/jpeg;base64,') === -1 ? "data:image/jpeg;base64," : "";
+            tocpreview += contentSource.tocPreview;
         }
         
         var rowData = {
