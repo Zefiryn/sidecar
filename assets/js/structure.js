@@ -30,7 +30,8 @@ function sidecarStructure() {
         ads: ko.observable(true),
         smooth_scrolling: ko.observable('never'),
         flattened_stack: ko.observable(false),
-        article_access: ko.observable(['free'])
+        article_access: ko.observable(['free']),
+        hide: ko.observable(false)
     };
     
     self.exportUpdateOnly = ko.observable(false);
@@ -127,7 +128,8 @@ To edit this sidecar, import it into the generator again.\r\n\
             isAd: entry.ads(),
             smoothScrolling: entry.smooth_scrolling(),
             isFlattenedStack: entry.flattened_stack(),
-            articleAccess: entry.article_access()
+            articleAccess: entry.article_access(),
+            hideFromTOC: entry.hide()
         };
 
         return object;
@@ -162,7 +164,8 @@ To edit this sidecar, import it into the generator again.\r\n\
             ads: ko.observable(item.isAd === 'true'),
             smooth_scrolling: ko.observable(item.smoothScrolling),
             flattened_stack: ko.observable(item.isFlattenedStack === 'true'),
-            article_access: ko.observable([item.articleAccess])
+            article_access: ko.observable([item.articleAccess]),
+            hide: ko.observable(item.hideFromTOC === 'true')
         };
 
         return rowData;
