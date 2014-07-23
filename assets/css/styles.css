@@ -392,6 +392,7 @@ section .tab-content .sidecar-table ol li .icon {
   height: 40px;
   display: inline-block;
   background-color: #ececec;
+  cursor: pointer;
 }
 section .tab-content .sidecar-table ol li .icon.icon-toc {
   background-position: -158px -57px;

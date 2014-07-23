@@ -71,7 +71,7 @@ To edit this sidecar, import it into the generator again.\r\n\
      */
     self.importFromXml = function(xmlstr) {
         var collection = [];
-        var x2js = new X2JS({escapeMode: false});
+        var x2js = new X2JS({escapeMode: false});        
         var jsonObj = x2js.xml_str2json(xmlstr);
         if (jsonObj === null) {
             var structure = new sidecarStructure();
@@ -174,5 +174,9 @@ To edit this sidecar, import it into the generator again.\r\n\
         };
 
         return rowData;
+    };
+    
+    self.addIcon = function(binaryString, row) {
+        row.entry().toc_image('data:image/jpeg;base64,' + btoa(binaryString));
     };
 }

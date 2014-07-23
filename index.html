@@ -81,9 +81,12 @@
                                 <span class="field-wrapper sort-handle"></span>
                                 
                                 <span class="field-wrapper">
-                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
+                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}, event: {click: $parent.showImportIconFile}">
                                         <img data-bind="attr: {src: entry().toc_image()}" width="40px" height="40px;"/>                                        
                                     </span>
+                                    <form class="toc-import-form">
+                                        <input type="file" data-bind="event: {change: $parent.importIconFile}, attr: {id: 'toc-file-' + $index()}" class="hidden" />
+                                    </form>
                                 </span>
                                 
                                 <span class="field-wrapper width-60">
@@ -160,9 +163,12 @@
                                 <span class="field-wrapper sort-handle"></span>
                                 
                                 <span class="field-wrapper">
-                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}">
-                                        <img data-bind="attr: {src: entry().toc_image()}" width="40px" height="40px;"/>
+                                    <span class="icon icon-toc" data-bind="css: {toc: hasTocIcon}, event: {click: $parent.showImportIconFile}">
+                                        <img data-bind="attr: {src: entry().toc_image()}" width="40px" height="40px;"/>                                        
                                     </span>
+                                    <form class="toc-import-form">
+                                        <input type="file" data-bind="event: {change: $parent.importIconFile}, attr: {id: 'toc-file-' + $index()}" class="hidden" />
+                                    </form>
                                 </span>
                                 
                                 <span class="field-wrapper width-60">
@@ -263,7 +269,6 @@
         <script type='text/javascript' src='assets/js/FileSaver.js'></script>
         <script type='text/javascript' src='assets/js/knockout.js'></script>
         <script type='text/javascript' src='assets/js/knockout-sortable.js'></script>
-        <script type='text/javascript' src='assets/js/knockout-animate.min.js'></script>
         <script type='text/javascript' src='assets/js/error.js'></script>
         <script type='text/javascript' src='assets/js/structure.js'></script>
         <script type='text/javascript' src='assets/js/filereader.js'></script>

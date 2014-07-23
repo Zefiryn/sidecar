@@ -107,12 +107,24 @@ function SidecarViewModel() {
         //reset input selection
         $('#importfileform')[0].reset();
     };
+    
+    self.importIconFile = function(obj, evt) {
+        self.reader.readIconFile(obj, evt, self.structure.addIcon);
+        $('.toc-import-form').each(function(idx, form){
+            form.reset();
+        });
+    };
 
     /**
      * Trigger click of file input
      */
     self.showImportBox = function() {
         $('#sidecar_file').trigger('click');
+    };
+    
+    self.showImportIconFile = function(obj, evt) {
+        var index = self.entries().indexOf(obj);
+        $('#toc-file-' + index).trigger('click');
     };
 
     /**
