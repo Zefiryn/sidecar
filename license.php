@@ -6,3 +6,5 @@ if (isset($_GET['id']) && isset($_GET['user'])) {
     $response['id'] = $_GET['id'];
     $response['user'] = $_GET['user'];
 }
+
+echo json_encode($response);
