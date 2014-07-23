@@ -76,6 +76,7 @@ To edit this sidecar, import it into the generator again.\r\n\
         if (jsonObj === null) {
             var structure = new sidecarStructure();
             collection.push(new SidecarRow(structure.fields));
+            error.addMessage('This file is not correct xml file', 'error');
         }
         else {            
             var locked = jsonObj.sidecar.hasOwnProperty('metadataUpdateOnly');

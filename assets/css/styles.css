@@ -82,28 +82,6 @@ body > header nav ul.nav-tabs li a {
   padding: 8px 0px;
   display: block;
 }
-body > header nav ul.messages {
-  width: 100%;
-  padding: 0px;
-}
-body > header nav ul.messages.hidden {
-  display: none;
-}
-body > header nav ul.messages li {
-  width: 100%;
-  padding: 5px 0px 5px 40px;
-  font-size: 14px;
-  font-weight: normal;
-  font-family: open-sans, sans-serif;
-}
-body > header nav ul.messages li.hidden {
-  display: none;
-}
-body > header nav ul.messages li.lock {
-  background: #97A2CE;
-  padding: 8px 0px 8px 40px;
-  color: #fff;
-}
 body > header nav ul.buttons {
   position: absolute;
   right: 30px;
@@ -164,6 +142,34 @@ body > header nav ul button.round.btn-help {
   background-image: url(../images/icons.png);
   background-repeat: no-repeat;
   background-position: -107px 5px;
+}
+ul.messages {
+  width: 100%;
+  padding: 0px;
+}
+ul.messages.hidden {
+  display: none;
+}
+ul.messages li {
+  width: 100%;
+  padding: 8px 0px 8px 40px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #fff;
+  font-family: open-sans, sans-serif;
+}
+ul.messages li.hidden {
+  display: none;
+}
+ul.messages li.lock {
+  background: #97A2CE;
+}
+ul.messages li.warning {
+  background: #F6C272;
+  color: #333;
+}
+ul.messages li.error {
+  background: #D85182;
 }
 section {
   -webkit-flex: 1;

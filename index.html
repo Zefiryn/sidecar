@@ -25,9 +25,11 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="messages" data-bind="css: {hidden: (message() == null || message() === '') && structure.editUpdateOnly() === false}">
+                <ul class="messages" data-bind="css: {hidden: structure.editUpdateOnly() === false}">
                     <li data-bind="css: {hidden: !structure.editUpdateOnly}, text: structure.lockInfoText" class="lock"></li>
-                    <li data-bind="text: message, css: messageType, css: {hidden: messageType() === null || messageType() === ''}"></li>
+                </ul>
+                <ul class="messages" data-bind="css: {hidden: (message() == null || message() === '')}">
+                    <li data-bind="text: message, css:messageType"></li>
                 </ul>
                 <ul class="buttons">
                     <li>
@@ -261,6 +263,8 @@
         <script type='text/javascript' src='assets/js/FileSaver.js'></script>
         <script type='text/javascript' src='assets/js/knockout.js'></script>
         <script type='text/javascript' src='assets/js/knockout-sortable.js'></script>
+        <script type='text/javascript' src='assets/js/knockout-animate.min.js'></script>
+        <script type='text/javascript' src='assets/js/error.js'></script>
         <script type='text/javascript' src='assets/js/structure.js'></script>
         <script type='text/javascript' src='assets/js/filereader.js'></script>
         <script type='text/javascript' src='assets/js/decorator.js'></script>

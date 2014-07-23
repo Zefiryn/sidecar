@@ -80,30 +80,7 @@ body > header {
                         display: block;
                     }
                 }
-            }
-            &.messages {
-                width: 100%;
-                padding: 0px;
-                &.hidden {
-                    display: none;
-                }
-                    
-                li {
-                    width: 100%;
-                    padding: 5px 0px 5px 40px;
-                    font-size: 14px;
-                    font-weight: normal;
-                    font-family: @sans;
-                    &.hidden {
-                        display: none;
-                    }
-                    &.lock {
-                        background: #97A2CE;
-                        padding: 8px 0px 8px 40px;
-                        color: #fff;
-                    }
-                }
-            }
+            }            
             &.buttons {
                 position: absolute;
                 right: 30px;
@@ -144,6 +121,36 @@ body > header {
                     &.btn-help {background-image: url(../images/icons.png);background-repeat: no-repeat; background-position: -107px 5px;}
                 }
             }
+        }
+    }
+}
+
+ul.messages {
+    width: 100%;
+    padding: 0px;
+    &.hidden {
+        display: none;
+    }
+
+    li {
+        width: 100%;
+        padding: 8px 0px 8px 40px;
+        font-size: 14px;
+        font-weight: normal;
+        color: #fff;
+        font-family: @sans;
+        &.hidden {
+            display: none;
+        }
+        &.lock {
+            background: #97A2CE;
+        }
+        &.warning {
+            background: #F6C272;
+            color: #333;
+        }
+        &.error {
+            background: #D85182;
         }
     }
 }

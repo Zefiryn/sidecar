@@ -188,3 +188,5 @@ function SidecarViewModel() {
 
 var viewModel = new SidecarViewModel();
 ko.applyBindings(viewModel);
+
+var error = new Error({view: viewModel, delay: 5000});
