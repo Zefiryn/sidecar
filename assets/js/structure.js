@@ -148,8 +148,8 @@ To edit this sidecar, import it into the generator again.\r\n\
             h: contentSource.sourceFile_h !== undefined ? contentSource.sourceFile_h : {}};
         var tocpreview = '';
         if (contentSource.tocPreview !== undefined && contentSource.tocPreview !== "") {
-            tocpreview =  contentSource.tocPreview.indexOf('data:image/jpeg;base64,') === -1 ? "data:image/jpeg;base64," : "";
-            tocpreview += contentSource.tocPreview;
+            tocpreview =  contentSource.tocPreview.toString().indexOf('data:image/jpeg;base64,') === -1 ? "data:image/jpeg;base64," : "";
+            tocpreview += contentSource.tocPreview.toString();
         }
         
         var rowData = {

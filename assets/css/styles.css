@@ -410,7 +410,7 @@ section .tab-content .sidecar-table ol.ui-sortable-disabled li .sort-handle {
   cursor: not-allowed;
 }
 section .tab-content .output {
-  padding: 60px 10px 0px 10px;
+  padding: 80px 10px 0px 10px;
 }
 section .tab-content .output pre {
   width: 90%;
