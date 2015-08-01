@@ -73,7 +73,7 @@ To edit this sidecar, import it into the generator again.\r\n\
         var collection = [];
         var x2js = new X2JS({escapeMode: false});        
         var jsonObj = x2js.xml_str2json(xmlstr);
-        if (jsonObj === null) {
+        if (jsonObj === null || jsonObj.parsererror != undefined) {
             var structure = new sidecarStructure();
             collection.push(new SidecarRow(structure.fields));
             error.addMessage('This file is not correct xml file', 'error');
