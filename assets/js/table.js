@@ -90,7 +90,7 @@ function SidecarViewModel() {
     self.toggleUpdateOnly = function() {
         if (self.structure.importIsLocked() === false) {
             self.structure.editUpdateOnly(!self.structure.editUpdateOnly());
-            self.toggleSorting(event.target.checked);
+            self.toggleSorting(self.structure.editUpdateOnly());
             self.setAvailableSection();
             self.structure.lockInfoText('You are working in Update Metatada Only mode. To add, delete article or edit Content Source section please press unlock button.');
         }
